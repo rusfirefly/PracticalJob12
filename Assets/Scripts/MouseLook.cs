@@ -1,32 +1,37 @@
+using Cinemachine;
+using TMPro;
 using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    [SerializeField] private Transform _playerBody;
-    [SerializeField] private Camera _camera;
-
-    [SerializeField] private float _mouseSensitivity;
-
-    private float _xRotation = 0f;
+    
+    [SerializeField] private CinemachineFreeLook _freeLook;
+    private float _speed;
+    private float _defaulSpeed;
 
     private void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        _defaulSpeed = _freeLook.m_XAxis.m_MaxSpeed;
+        SetMaxSpeed(0);
     }
-    
-    private void FixedUpdate()
+
+    private void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity * Time.deltaTime; 
-        float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity * Time.deltaTime;
+        if(Input.GetMouseButtonDown(1))
+        {
+            _speed = _defaulSpeed;
+        }
+        else
+        {
+            if(Input.GetMouseButtonUp(1))
+            {
+                _speed = 0;
+            }
+        }
 
-        _xRotation -= mouseY;
-        _xRotation = Mathf.Clamp(_xRotation,-90, 45);
-
-        _camera.transform.localEulerAngles = new Vector3(_xRotation, 0, 0);
-        _playerBody.Rotate(Vector3.up * mouseX);
+        SetMaxSpeed(_speed);
     }
 
-   
+    private void SetMaxSpeed(float speed) => _freeLook.m_XAxis.m_MaxSpeed = speed;
 
 }

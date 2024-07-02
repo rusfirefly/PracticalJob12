@@ -30,7 +30,12 @@ public class Player : MonoBehaviour, IMovable
 
     public void Move(Vector3 move)
     {
-        _rigidbody.AddForce(move, _forceMode);
+        _rigidbody.AddRelativeForce(move, _forceMode);
+    }
+
+    public void LookInDirection(Vector3 newForward)
+    {
+        transform.forward = newForward;
     }
 
     private void OnTriggerEnter(Collider other)

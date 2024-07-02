@@ -1,4 +1,3 @@
-
 using DG.Tweening;
 using UnityEngine;
 
@@ -7,6 +6,7 @@ public class Door : MonoBehaviour, IInteract
     [SerializeField] private Ease _easeEffect;
     [SerializeField] private float _endPosition;
     [SerializeField] private float _duration;
+
     private bool _isOpen;
     private float _doorClose;
     private float _doorOpen;

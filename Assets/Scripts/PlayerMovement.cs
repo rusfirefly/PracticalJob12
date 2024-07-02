@@ -7,10 +7,12 @@ public class PlayerMovement : MonoBehaviour
     private float _vertical;
     private float _horizontal;
     private Vector3 _move;
+    private Camera _camera;
 
     private void Awake()
     {
         _player = GetComponent<Player>();
+        _camera = Camera.main;
     }
 
     private void Update()
@@ -22,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         _move = new Vector3(_horizontal, 0, _vertical);
-        _player.Move(_move); 
+        _player.LookInDirection(_camera.transform.forward);
+        _player.Move(_move);
     }
 }
