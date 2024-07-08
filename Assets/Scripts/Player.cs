@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -42,9 +43,9 @@ public class Player : MonoBehaviour, IMovable
         _rigidbody.AddRelativeForce(move, _forceMode);
     }
 
-    public void LookInDirection(Vector3 newForward)
+    public void LookInDirection(Vector3 cameraForward)
     {
-        transform.forward = newForward;
+        
     }
 
     private void OnTriggerEnter(Collider other)
