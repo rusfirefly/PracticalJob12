@@ -24,8 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         _move = new Vector3(_horizontal, 0, _vertical);
-
-
+        //_player.LookInDirection(_camera.transform.forward);
         _player.Move(_move);
     }
 }

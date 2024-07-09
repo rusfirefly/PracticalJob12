@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour, IMovable
     [SerializeField] private float _dieZone;
 
     private Interactable _interactable;
+
 
     private void OnValidate()
     {
@@ -40,12 +42,18 @@ public class Player : MonoBehaviour, IMovable
 
     public void Move(Vector3 move)
     {
-        _rigidbody.AddRelativeForce(move, _forceMode);
+        //Vector3 offset = move * Time.deltaTime;
+        _rigidbody.AddRelativeForce(move);
+        //_rigidbody.MovePosition(_rigidbody.position + offset);
     }
 
-    public void LookInDirection(Vector3 cameraForward)
+    public void LookInDirection(Vector3 camera)
     {
-        
+        if(Vector3.Angle(transform.forward, camera) > 0)
+        {
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, camera, 2f, 0);
+            transform.rotation = Quaternion.LookRotation(newDirection);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
