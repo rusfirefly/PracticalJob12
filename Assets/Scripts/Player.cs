@@ -49,11 +49,7 @@ public class Player : MonoBehaviour, IMovable
 
     public void LookInDirection(Vector3 camera)
     {
-        if(Vector3.Angle(transform.forward, camera) > 0)
-        {
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, camera, 2f, 0);
-            transform.rotation = Quaternion.LookRotation(newDirection);
-        }
+        transform.rotation = Quaternion.LookRotation(camera);
     }
 
     private void OnTriggerEnter(Collider other)
