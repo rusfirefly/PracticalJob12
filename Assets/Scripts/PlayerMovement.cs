@@ -4,9 +4,9 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private Player _player;
+    [SerializeField] private bool _debugDrawForce;
     private float _vertical;
     private float _horizontal;
-    private Vector3 _move;
     private Camera _camera;
 
     private void Awake()
@@ -23,8 +23,27 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _move = new Vector3(_horizontal, 0, _vertical);
-        //_player.LookInDirection(_camera.transform.forward);
-        _player.Move(_move);
+        Vector3 force = CalculeForce(_vertical, _horizontal);
+
+        if (_debugDrawForce)
+        {
+            Debug.DrawRay(_player.transform.position, force, Color.red, 300f);
+        }
+
+        _player.Move(force);
+    }
+
+    private Vector3 CalculeForce(float movementX, float movementY)
+    {
+        Vector3 forward = _camera.transform.forward;
+        Vector3 right = _camera.transform.right;
+
+        forward.Normalize();
+        right.Normalize();
+
+        forward.y = 0;
+        right.y = 0;
+
+        return movementX * forward + movementY * right;
     }
 }

@@ -42,14 +42,7 @@ public class Player : MonoBehaviour, IMovable
 
     public void Move(Vector3 move)
     {
-        //Vector3 offset = move * Time.deltaTime;
-        _rigidbody.AddRelativeForce(move);
-        //_rigidbody.MovePosition(_rigidbody.position + offset);
-    }
-
-    public void LookInDirection(Vector3 camera)
-    {
-        transform.rotation = Quaternion.LookRotation(camera);
+        _rigidbody.AddForce(move, _forceMode);
     }
 
     private void OnTriggerEnter(Collider other)

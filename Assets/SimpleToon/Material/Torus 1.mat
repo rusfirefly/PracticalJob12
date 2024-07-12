@@ -24,21 +24,21 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 48be6ed832adba94999829854028da95, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - Step1: 1
     - _Gloss: 10
-    - _OutlineWidth: 0.164
+    - _OutlineWidth: 0.233
     - _RimPower: 2.2
-    - _RimStep: 0.773
-    - _RimStepSmooth: 0.019
-    - _ShadowStep: 0.6
-    - _ShadowStepSmooth: 0.024
-    - _SpecularStep: 0.983
-    - _SpecularStepSmooth: 0.015
+    - _RimStep: 0.819
+    - _RimStepSmooth: 0.221
+    - _ShadowStep: 0.56
+    - _ShadowStepSmooth: 0.012
+    - _SpecularStep: 0.354
+    - _SpecularStepSmooth: 0.003
     - _Step: 0.432
     - _Step1: 0.537
     - _Step2: 0.018
