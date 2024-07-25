@@ -11,12 +11,14 @@ public class Player : MonoBehaviour, IMovable
     [SerializeField] private float _dieZone;
 
     private Interactable _interactable;
-
+    private bool _isActiveSkill;
 
     private void OnValidate()
     {
         _rigidbody??=GetComponent<Rigidbody>();
     }
+
+
 
     public void Update()
     {
@@ -25,7 +27,20 @@ public class Player : MonoBehaviour, IMovable
             if(Input.GetKeyDown(KeyCode.E))
             {
                 _interactable.OnInteract();
+                
+                
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            _isActiveSkill = !_isActiveSkill;
+            InvisibleMaterial[] invisibleMaterials = FindObjectsOfType<InvisibleMaterial>();
+            foreach (InvisibleMaterial invisible in invisibleMaterials)
+            {
+                invisible.SetVisible(_isActiveSkill);
+            }
+
         }
 
         if(transform.position.y < _dieZone)
