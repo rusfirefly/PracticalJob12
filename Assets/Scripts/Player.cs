@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,18 +8,28 @@ public class Player : MonoBehaviour, IMovable
 {
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private ForceMode _forceMode;
-    [SerializeField] private SpawnPoint _spawnPoint;
     [SerializeField] private float _dieZone;
 
+    private Vector3 _spawnPoint;
     private Interactable _interactable;
     private bool _isActiveSkill;
+    private SkillShowInvisibleObjects _skillShowInvisibleObjects;
+
+    private void Start()
+    {
+        _skillShowInvisibleObjects = GetComponent<SkillShowInvisibleObjects>();
+        _skillShowInvisibleObjects.StopSkillAction += OnStopSkillAction;
+    }
+
+    private void OnDisable()
+    {
+        _skillShowInvisibleObjects.StopSkillAction -= OnStopSkillAction;
+    }
 
     private void OnValidate()
     {
         _rigidbody??=GetComponent<Rigidbody>();
     }
-
-
 
     public void Update()
     {
@@ -27,20 +38,17 @@ public class Player : MonoBehaviour, IMovable
             if(Input.GetKeyDown(KeyCode.E))
             {
                 _interactable.OnInteract();
-                
-                
             }
         }
 
         if(Input.GetKeyDown(KeyCode.F))
         {
             _isActiveSkill = !_isActiveSkill;
-            InvisibleMaterial[] invisibleMaterials = FindObjectsOfType<InvisibleMaterial>();
-            foreach (InvisibleMaterial invisible in invisibleMaterials)
-            {
-                invisible.SetVisible(_isActiveSkill);
-            }
-
+            Debug.Log(_isActiveSkill);
+            if (_isActiveSkill)
+                _skillShowInvisibleObjects.Use();
+            else
+                _skillShowInvisibleObjects.SkillStop();
         }
 
         if(transform.position.y < _dieZone)
@@ -58,6 +66,12 @@ public class Player : MonoBehaviour, IMovable
     public void Move(Vector3 move)
     {
         _rigidbody.AddForce(move, _forceMode);
+    }
+
+    private void OnStopSkillAction()
+    {
+        _isActiveSkill = false;
+        _skillShowInvisibleObjects.SkillStop();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -81,15 +95,9 @@ public class Player : MonoBehaviour, IMovable
         {
             Die();
         }
-
-        SpawnPoint spawnPoint = other.gameObject.GetComponent<SpawnPoint>();
-        if (spawnPoint)
-        {
-            SetNewSpawPoint(spawnPoint);
-        }
     }
 
-    private void SetNewSpawPoint(SpawnPoint spawnPoint)
+    public void SetNewSpawPoint(Vector3 spawnPoint)
     {
         if (_spawnPoint != spawnPoint)
         {
@@ -107,7 +115,7 @@ public class Player : MonoBehaviour, IMovable
         _interactable = null;
     }
 
-    private void Respawn() => transform.position = _spawnPoint.spawnPosition.position;
+    private void Respawn() => transform.position = _spawnPoint;
 
     private void StopPlayer()
     {
