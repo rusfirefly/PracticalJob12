@@ -8,11 +8,11 @@ public class InvisibleMaterial : MonoBehaviour
     private Shader _shader;
 
     private bool _isVisible;
-    private bool _isStop;
     private float _curentValueAlpha;
 
     private float _min = 0f;
     private float _max = 1f;
+    private float _speed = 0.05f;
 
     private MeshCollider _collider;
 
@@ -52,7 +52,7 @@ public class InvisibleMaterial : MonoBehaviour
                     _collider.enabled = true;
                     return;
                 }
-                _curentValueAlpha += 0.05f;
+                _curentValueAlpha += _speed;
             }
             else
             {
@@ -62,7 +62,7 @@ public class InvisibleMaterial : MonoBehaviour
                     return;
                 }
 
-                _curentValueAlpha -= 0.05f;
+                _curentValueAlpha -= _speed;
             }
 
             ChangeValue(_curentValueAlpha);
