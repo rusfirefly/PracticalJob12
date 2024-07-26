@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private Player _player;
     [SerializeField] private bool _debugDrawForce;
+  
     private float _vertical;
     private float _horizontal;
     private Camera _camera;

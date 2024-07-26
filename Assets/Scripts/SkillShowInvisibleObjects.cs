@@ -11,13 +11,16 @@ public class SkillShowInvisibleObjects : MonoBehaviour
     private bool _isUseSkill;
     private float _currentTime;
 
+    private void Start()
+    {
+        _skillView.SetTimeAction(_timeOfAction);
+    }
 
     private void Update()
     {
         if(_isUseSkill)
         {
             ColdownSkill();
-            
         } 
         else
         {
@@ -28,40 +31,40 @@ public class SkillShowInvisibleObjects : MonoBehaviour
     public void Use()
     {
         _isUseSkill = true;
-        SetVisibleAllHideObjects(_isUseSkill);
+        SetVisibleAllHideObjects();
     }
 
     public void SkillStop()
     {
         _isUseSkill = false;
-        SetVisibleAllHideObjects(_isUseSkill);
+        SetVisibleAllHideObjects();
     }
 
     private void ColdownSkill()
     {
         _currentTime += Time.deltaTime;
-        _skillView.Animation(_timeOfAction - _currentTime);
+        _skillView.SetTimeAction(_timeOfAction - _currentTime);
         if (_currentTime > _timeOfAction)
         {
             _isUseSkill = false;
+            SetVisibleAllHideObjects();
             StopSkillAction?.Invoke();
-            SetVisibleAllHideObjects(_isUseSkill);
         }
     }
 
     private void ReloadSkill()
     {
-        if (TryTime())
+        if (TryTimeAction())
         {
             _currentTime -= Time.deltaTime;
-            _skillView.Animation(_timeOfAction - _currentTime);
+            _skillView.SetTimeAction(_timeOfAction - _currentTime);
         }else
         {
             _currentTime = 0;
         }
     }
 
-    private bool TryTime()
+    private bool TryTimeAction()
     {
         if((_timeOfAction - _currentTime) < _timeOfAction)
         {
@@ -70,12 +73,12 @@ public class SkillShowInvisibleObjects : MonoBehaviour
         return false;
     }
 
-    private void SetVisibleAllHideObjects(bool visible)
+    private void SetVisibleAllHideObjects()
     {
         InvisibleMaterial[] invisibleMaterials = FindObjectsOfType<InvisibleMaterial>();
         foreach (InvisibleMaterial invisible in invisibleMaterials)
         {
-            invisible.SetVisible(visible);
+            invisible.SetVisible();
         }
     }
 

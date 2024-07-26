@@ -8,7 +8,6 @@ public class Coin : MonoBehaviour, ICollectible
 
     public void Collect()
     {
-        Debug.Log("collected coin");
         Collectible?.Invoke();
         Destroy(gameObject);
     }

@@ -33,27 +33,36 @@ public class Player : MonoBehaviour, IMovable
 
     public void Update()
     {
-        if(_interactable)
-        {
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                _interactable.OnInteract();
-            }
-        }
+        InteractableKeyInput();
+        SkillKeyInput();
 
-        if(Input.GetKeyDown(KeyCode.F))
+        if (transform.position.y < _dieZone)
+        {
+            Die();
+        }
+    }
+
+    private void SkillKeyInput()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
         {
             _isActiveSkill = !_isActiveSkill;
-            Debug.Log(_isActiveSkill);
+
             if (_isActiveSkill)
                 _skillShowInvisibleObjects.Use();
             else
                 _skillShowInvisibleObjects.SkillStop();
         }
+    }
 
-        if(transform.position.y < _dieZone)
+    private void InteractableKeyInput()
+    {
+        if (_interactable)
         {
-            Die();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                _interactable.OnInteract();
+            }
         }
     }
 
@@ -71,23 +80,21 @@ public class Player : MonoBehaviour, IMovable
     private void OnStopSkillAction()
     {
         _isActiveSkill = false;
-        _skillShowInvisibleObjects.SkillStop();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        _interactable = other.GetComponent<Interactable>();
-
-        if(_interactable)
+        if (other.gameObject.TryGetComponent(out Interactable interactable))
         {
+            _interactable = interactable;
             _interactable.ShowMessage();
         }
 
-        Coin coin = other.gameObject.GetComponent<Coin>();
-        if (coin)
+        if (other.gameObject.TryGetComponent(out ICollectible coin))
         {
             SaveHandler.instance.savesData.NewCoin();
             SaveHandler.instance.Save();
+
             coin.Collect();
         }
 
@@ -100,17 +107,13 @@ public class Player : MonoBehaviour, IMovable
     public void SetNewSpawPoint(Vector3 spawnPoint)
     {
         if (_spawnPoint != spawnPoint)
-        {
             _spawnPoint = spawnPoint;
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (_interactable)
-        {
             _interactable.HideMessage();
-        }
 
         _interactable = null;
     }

@@ -4,41 +4,31 @@ using System.Threading.Tasks;
 
 public class InvisibleMaterial : MonoBehaviour
 {
+    [SerializeField, Range(0,1)] private float _curentValueAlpha;
+    [Header("Время появления/растворения объекта в мс")]
+    [SerializeField] private int _animationDissolutionSpeed;
+    [SerializeField] private bool _isVisible;
+  
     private Renderer _render;
     private Shader _shader;
-
-    private bool _isVisible;
-    private float _curentValueAlpha;
-
     private float _min = 0f;
     private float _max = 1f;
     private float _speed = 0.05f;
-
     private MeshCollider _collider;
 
     private void Start()
     {
         _render = GetComponent<Renderer>();
         _collider = GetComponent<MeshCollider>();
-
-        _collider.enabled = false;
-
         _shader = _render.material.shader;
-    
-        _curentValueAlpha = 0;
-        ChangeValue(_curentValueAlpha);
+
+        AnimationDissolution(_curentValueAlpha);
     }
 
-    public void SetVisible(bool visible)
+    public void SetVisible()
     {
-        _isVisible = visible;
+        _isVisible=!_isVisible;
         ShowInvivsibleObjects();
-    }
-
-    
-    private void ChangeValue(float value)
-    {
-        _render.material.SetFloat("_Edge", value);
     }
 
     private async void ShowInvivsibleObjects()
@@ -52,6 +42,7 @@ public class InvisibleMaterial : MonoBehaviour
                     _collider.enabled = true;
                     return;
                 }
+
                 _curentValueAlpha += _speed;
             }
             else
@@ -65,11 +56,14 @@ public class InvisibleMaterial : MonoBehaviour
                 _curentValueAlpha -= _speed;
             }
 
-            ChangeValue(_curentValueAlpha);
-
-            await Task.Delay(20);
+            AnimationDissolution(_curentValueAlpha);
+            await Task.Delay(_animationDissolutionSpeed);
         }
-        
+
+    }
+    private void AnimationDissolution(float value)
+    {
+        _render.material.SetFloat("_Edge", value);
     }
 
 }

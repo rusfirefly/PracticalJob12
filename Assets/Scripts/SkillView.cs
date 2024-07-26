@@ -5,7 +5,7 @@ public class SkillView : MonoBehaviour
 {
     [SerializeField] private Text _skillTimeOfActionText;
 
-    public void Animation(float time)
+    public void SetTimeAction(float time)
     {
         _skillTimeOfActionText.text = $"{time:F0}";
     }
