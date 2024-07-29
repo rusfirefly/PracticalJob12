@@ -1,20 +1,26 @@
 using UnityEngine;
 
-public class SpawnPoint : MonoBehaviour
+public class SpawnPoint : Interactable
 {
     [field: SerializeField] public Transform SpawnPosition { get; private set; }
     private bool _isActiveSpawnPoint;
+    private Player _player;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.TryGetComponent(out Player plyer))
         {
+            _player = plyer;
+        }
+    }
+
+    public override void OnInteract()
+    {
+        if (_isActiveSpawnPoint == false)
+        {
             Debug.Log("точка сохранения");
-            if (_isActiveSpawnPoint == false)
-            {
-                plyer.SetNewSpawPoint(SpawnPosition.position);
-                _isActiveSpawnPoint = true;
-            }
+            _player.SetNewSpawPoint(SpawnPosition.position);
+            _isActiveSpawnPoint = true;
         }
     }
 }

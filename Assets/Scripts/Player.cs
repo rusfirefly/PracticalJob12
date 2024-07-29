@@ -1,9 +1,8 @@
-using DG.Tweening;
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(SkillShowInvisibleObjects))]
+
 public class Player : MonoBehaviour, IMovable
 {
     [SerializeField] private Rigidbody _rigidbody;
@@ -19,6 +18,7 @@ public class Player : MonoBehaviour, IMovable
     {
         _skillShowInvisibleObjects = GetComponent<SkillShowInvisibleObjects>();
         _skillShowInvisibleObjects.StopSkillAction += OnStopSkillAction;
+        SetDefaultSpawnPosition();
     }
 
     private void OnDisable()
@@ -41,6 +41,8 @@ public class Player : MonoBehaviour, IMovable
             Die();
         }
     }
+
+    private void SetDefaultSpawnPosition() => _spawnPoint = transform.position;
 
     private void SkillKeyInput()
     {
@@ -97,17 +99,6 @@ public class Player : MonoBehaviour, IMovable
 
             coin.Collect();
         }
-
-        if (other.gameObject.tag == "Enemy")
-        {
-            Die();
-        }
-    }
-
-    public void SetNewSpawPoint(Vector3 spawnPoint)
-    {
-        if (_spawnPoint != spawnPoint)
-            _spawnPoint = spawnPoint;
     }
 
     private void OnTriggerExit(Collider other)
@@ -116,6 +107,12 @@ public class Player : MonoBehaviour, IMovable
             _interactable.HideMessage();
 
         _interactable = null;
+    }
+
+    public void SetNewSpawPoint(Vector3 spawnPoint)
+    {
+        if (_spawnPoint != spawnPoint)
+            _spawnPoint = spawnPoint;
     }
 
     private void Respawn() => transform.position = _spawnPoint;

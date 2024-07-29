@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private Player _player;
+    [SerializeField] private IMovable _player;
     [SerializeField] private bool _debugDrawForce;
   
     private float _vertical;
@@ -25,12 +25,6 @@ public class PlayerInput : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 force = CalculeForce(_vertical, _horizontal);
-
-        if (_debugDrawForce)
-        {
-            Debug.DrawRay(_player.transform.position, force, Color.red, 300f);
-        }
-
         _player.Move(force);
     }
 

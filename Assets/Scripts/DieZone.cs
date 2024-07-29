@@ -2,15 +2,11 @@ using UnityEngine;
 
 public class DieZone : MonoBehaviour
 {
-    private Player _player;
-
     private void OnTriggerEnter(Collider other)
     {
-        _player = other.GetComponent<Player>();
-
-        if(_player)
+        if(other.gameObject.TryGetComponent(out Player player))
         {
-            _player.Die();
+            player.Die();
         }
     }
 }

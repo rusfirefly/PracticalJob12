@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, IInteract
 {
+    private enum TypeAnimation {DOMoveY, DOMoveX, DOMoveZ}
+
     [SerializeField] private Ease _easeEffect;
     [SerializeField] private float _endPosition;
     [SerializeField] private float _duration;
+    [SerializeField] private TypeAnimation _typeAnimation;
 
     private bool _isOpen;
     private float _doorClose;
@@ -21,11 +24,28 @@ public class Door : MonoBehaviour, IInteract
     {
         _isOpen = !_isOpen;
         float stateDoor = _doorClose;
-        if(_isOpen)
+
+        if (_isOpen)
             stateDoor = _doorOpen;
 
-        transform.DOMoveY(stateDoor, _duration).SetEase(_easeEffect);
+        StartAnimation(stateDoor);
     }
 
-    
+    private void StartAnimation(float stateDoor)
+    {
+        switch (_typeAnimation)
+        {
+            case TypeAnimation.DOMoveY:
+                transform.DOMoveY(stateDoor, _duration).SetEase(_easeEffect);
+                break;
+            case TypeAnimation.DOMoveX:
+                transform.DOMoveX(stateDoor, _duration).SetEase(_easeEffect);
+                break;
+            case TypeAnimation.DOMoveZ:
+                transform.DOMoveZ(stateDoor, _duration).SetEase(_easeEffect);
+                break;
+
+        }
+    }
+
 }

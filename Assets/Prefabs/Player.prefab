@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 3320456404719127537}
   - component: {fileID: 930294812675952118}
   - component: {fileID: 1036949831744292254}
+  - component: {fileID: 5460597974426287242}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -61,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8595375701831142813}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 37.86, y: 2.43, z: -58.63}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
@@ -97,7 +98,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 91b97ac2fdb48cb44b1f795f6d7e9441, type: 2}
+  - {fileID: 2100000, guid: bfd8b8ab64f526b40ab9f3664df4fca5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -181,7 +182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 3320456404719127537}
   _forceMode: 0
-  _spawnPoint: {fileID: 0}
   _dieZone: -38
 --- !u!114 &1036949831744292254
 MonoBehaviour:
@@ -195,6 +195,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b78949a0f0fc1e46ad05638ade363e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 250
-  _player: {fileID: 0}
+  _speed: 100
   _debugDrawForce: 0
+--- !u!114 &5460597974426287242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8595375701831142813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f176632b44fb7234187f4f86de22fac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillView: {fileID: 0}
+  _timeOfAction: 5

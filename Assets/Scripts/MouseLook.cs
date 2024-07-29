@@ -1,5 +1,4 @@
 using Cinemachine;
-using TMPro;
 using UnityEngine;
 
 public class MouseLook : MonoBehaviour

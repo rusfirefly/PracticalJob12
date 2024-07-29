@@ -876,7 +876,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3345
+  m_VersionIndex: 3348
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1127,7 +1127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8671306597351088500}
   - component: {fileID: 6826424300954802306}
-  - component: {fileID: 4256149766677997623}
+  - component: {fileID: 5793079585106800045}
   m_Layer: 0
   m_Name: CheckPoint
   m_TagString: Untagged
@@ -1165,8 +1165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b6050e37d6f68743a3ed84aa592d045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _iteractableText: {fileID: 0}
+  _message: Press E
   <SpawnPosition>k__BackingField: {fileID: 4750569671862383762}
---- !u!65 &4256149766677997623
+--- !u!65 &5793079585106800045
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1185,5 +1187,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6.300373, y: 1, z: 6.3473086}
-  m_Center: {x: -1.2309177, y: 0, z: -2.673617}
+  m_Size: {x: 1.2937946, y: 1.1502407, z: 1.1604254}
+  m_Center: {x: -0.4876089, y: 0.5115945, z: -0.4728871}

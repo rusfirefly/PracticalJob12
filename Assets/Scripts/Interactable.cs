@@ -6,10 +6,7 @@ public abstract class Interactable : MonoBehaviour
     [SerializeField] private TMP_Text _iteractableText;
     [SerializeField] private string _message = "Press E";
 
-    public virtual void OnInteract()
-    {
-        
-    }
+    public abstract void OnInteract();
 
     public void ShowMessage()
     {
