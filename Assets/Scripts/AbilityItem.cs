@@ -9,6 +9,12 @@ public class AbilityItem : MonoBehaviour
         if(other.gameObject.TryGetComponent(out Player player))
         {
             _skillPlayer.Initlialize(isOpenSkill: true);
+            DestroyObject();
         }
+    }
+
+    private void DestroyObject()
+    {
+        Destroy(gameObject);
     }
 }
