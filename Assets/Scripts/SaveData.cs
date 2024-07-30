@@ -1,10 +1,10 @@
 [System.Serializable]
 public class DataGame
 {
-    public int levelID;
-    public int pointID;
-    public string playerName;
-    public int score;
+    public int LevelID;
+    public int PointID;
+    public string PlayerName;
+    public int Score;
 }
 
 public class SaveData 
@@ -19,24 +19,23 @@ public class SaveData
     private void DefauldValue()
     {
         dataGame = new DataGame();
-        dataGame.levelID = 0;
-        dataGame.pointID = 0;
-        dataGame.playerName = "no name";
-        dataGame.score = 0;
+        dataGame.LevelID = 0;
+        dataGame.PointID = 0;
+        dataGame.PlayerName = "no name";
+        dataGame.Score = 0;
     }
 
-    public void SetPlayerName(string name) => dataGame.playerName = name;
+    public void SetPlayerName(string name) => dataGame.PlayerName = name;
     
-    public void NewCoin() => dataGame.score++;
+    public void NewCoin() => dataGame.Score++;
 
-    public void SetPoint(int pointId) => dataGame.pointID = pointId;
+    public void SetPoint(int pointId) => dataGame.PointID = pointId;
 
-    public void SetLevelId(int levelID)=> dataGame.levelID = levelID;
+    public void SetLevelId(int levelID)=> dataGame.LevelID = levelID;
 
+    public int GetScore() => dataGame.Score;
 
-    public int GetScore() => dataGame.score;
+    public int GetLevelID() => dataGame.LevelID;
 
-    public int GetLevelID() => dataGame.levelID;
-
-    public int GetPointId() => dataGame.pointID;
+    public int GetPointId() => dataGame.PointID;
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    [SerializeField] private GameObject _door;
+    [SerializeField] private AnimationObject _animationObject;
     private IInteract _doorInteraction;
 
     private void Start()
     {
-        _doorInteraction = _door.GetComponent<IInteract>();
+        _doorInteraction = _animationObject.GetComponent<IInteract>();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -14,11 +14,12 @@ public class Player : MonoBehaviour, IMovable
     private bool _isActiveSkill;
     private SkillShowInvisibleObjects _skillShowInvisibleObjects;
 
-    private void Start()
+    public void Initialize(bool skillOpen = true)
     {
         _skillShowInvisibleObjects = GetComponent<SkillShowInvisibleObjects>();
         _skillShowInvisibleObjects.StopSkillAction += OnStopSkillAction;
         SetDefaultSpawnPosition();
+        _skillShowInvisibleObjects.Initlialize(skillOpen);
     }
 
     private void OnDisable()
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour, IMovable
 
     private void SkillKeyInput()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && _skillShowInvisibleObjects.isOpen)
         {
             _isActiveSkill = !_isActiveSkill;
 

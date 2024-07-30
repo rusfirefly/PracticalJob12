@@ -2,31 +2,13 @@ using UnityEngine;
 
 public class Tutorial : MonoBehaviour
 {
-    [SerializeField] private Tutorial _tutorial;
-    [SerializeField] private float _timeOnVisible;
-    private int _tutorialCount;
-    private int _nextTutorial;
+    [SerializeField] private Player _player;
+    [SerializeField] private bool _isOpenSkill;
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (_tutorial == null)
-        {
-            Close();
-            return;
-        }
-        Next();
-        Invoke("Close", _timeOnVisible);
+        _player.Initialize(skillOpen: _isOpenSkill);
     }
 
-    private void Close()
-    {
-        gameObject.SetActive(false); 
-    }
 
-    private void Next()
-    {
-       ShowTutorial(_nextTutorial); 
-    }
-
-    private void ShowTutorial(int index) => _tutorial.gameObject.SetActive(true);
 }

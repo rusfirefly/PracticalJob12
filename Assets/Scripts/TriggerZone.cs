@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class TriggerZone : Interactable
 {
-    [SerializeField] private GameObject _object;
+    [SerializeField] private AnimationObject _animationObject;
     
     private IInteract _objectInteract;
 
     private void Start()
     {
-        _objectInteract = _object.GetComponent<IInteract>();
+        _objectInteract = _animationObject.GetComponent<IInteract>();
     }
 
     public override void OnInteract()

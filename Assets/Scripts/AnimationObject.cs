@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class Door : MonoBehaviour, IInteract
+public class AnimationObject : MonoBehaviour, IInteract
 {
     private enum TypeAnimation {DOMoveY, DOMoveX, DOMoveZ}
 
@@ -9,6 +9,7 @@ public class Door : MonoBehaviour, IInteract
     [SerializeField] private float _endPosition;
     [SerializeField] private float _duration;
     [SerializeField] private TypeAnimation _typeAnimation;
+    [SerializeField] private Camera _camera;
 
     private bool _isOpen;
     private float _doorClose;
@@ -16,8 +17,9 @@ public class Door : MonoBehaviour, IInteract
 
     private void Start()
     {
-        _doorClose = transform.position.y;
+        _doorClose = transform.localPosition.y;
         _doorOpen = _endPosition;
+        _camera = Camera.main;
     }
 
     public void Action()
@@ -33,19 +35,23 @@ public class Door : MonoBehaviour, IInteract
 
     private void StartAnimation(float stateDoor)
     {
+        Debug.Log($"{_isOpen} {stateDoor} {_typeAnimation}");
         switch (_typeAnimation)
         {
             case TypeAnimation.DOMoveY:
-                transform.DOMoveY(stateDoor, _duration).SetEase(_easeEffect);
+                transform.DOLocalMoveY(stateDoor, _duration).SetEase(_easeEffect);
+                
                 break;
             case TypeAnimation.DOMoveX:
-                transform.DOMoveX(stateDoor, _duration).SetEase(_easeEffect);
+                transform.DOLocalMoveX(stateDoor, _duration).SetEase(_easeEffect);
                 break;
             case TypeAnimation.DOMoveZ:
-                transform.DOMoveZ(stateDoor, _duration).SetEase(_easeEffect);
+                transform.DOLocalMoveZ(stateDoor, _duration).SetEase(_easeEffect);
                 break;
 
         }
+        
+        _camera.DOShakePosition(2f, 10, 100, 90);
     }
 
 }

@@ -4,15 +4,29 @@ using UnityEngine;
 public class SkillShowInvisibleObjects : MonoBehaviour
 {
     public event Action StopSkillAction;
+
     [SerializeField] private SkillView _skillView;
     [SerializeField] private float _timeOfAction;
 
     private bool _isUseSkill;
     private float _currentTime;
+    private bool _isOpen;
 
-    private void Start()
+    public bool isOpen=> _isOpen;
+
+    public void Initlialize(bool isOpenSkill)
     {
-        _skillView.SetTimeAction(_timeOfAction);
+        _isOpen = isOpenSkill;
+        OpenSkill(_isOpen);
+    }
+
+    private void OpenSkill(object isOpen)
+    {
+        _skillView.ShowSkill(_isOpen);
+        if (_isOpen)
+        {
+            _skillView.SetTimeAction(_timeOfAction);
+        }
     }
 
     private void Update()
