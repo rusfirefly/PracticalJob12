@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MaterialDissolution
+  m_Name: Dissolution
   m_Shader: {fileID: -6465566751694194690, guid: 60b297a94b06cd744af9b497e72b343c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -16,7 +16,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 1969
+  m_CustomRenderQueue: 2419
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: _Scale

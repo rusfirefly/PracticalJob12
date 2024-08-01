@@ -13,7 +13,7 @@ public class TriggerZone : Interactable
 
     public override void OnInteract()
     {
-        if (_objectInteract != null)
+        if (_objectInteract != null && _animationObject != null)
         {
             _objectInteract.Action();
         }
