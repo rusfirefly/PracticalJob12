@@ -8,7 +8,8 @@ public class TriggerZone : Interactable
 
     private void Start()
     {
-        _objectInteract = _animationObject.GetComponent<IInteract>();
+        if(_animationObject != null)
+            _objectInteract = _animationObject.GetComponent<IInteract>();
     }
 
     public override void OnInteract()

@@ -35,12 +35,10 @@ public class AnimationObject : MonoBehaviour, IInteract
 
     private void StartAnimation(float stateDoor)
     {
-        Debug.Log($"{_isOpen} {stateDoor} {_typeAnimation}");
         switch (_typeAnimation)
         {
             case TypeAnimation.DOMoveY:
                 transform.DOLocalMoveY(stateDoor, _duration).SetEase(_easeEffect);
-                
                 break;
             case TypeAnimation.DOMoveX:
                 transform.DOLocalMoveX(stateDoor, _duration).SetEase(_easeEffect);

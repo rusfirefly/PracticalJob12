@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2144641631122072968}
   - component: {fileID: 7217611942260145534}
   - component: {fileID: 3327331885594859792}
-  - component: {fileID: 2807488726744129074}
   m_Layer: 0
   m_Name: Cylinder (3)
   m_TagString: Untagged
@@ -84,29 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2807488726744129074
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2221258670044509628}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &4371430179835474892
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2723736111831451599}
   - component: {fileID: 3729451178369025258}
+  - component: {fileID: 1257121384153635707}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -160,6 +137,27 @@ MonoBehaviour:
   _duration: 2
   _typeAnimation: 0
   _camera: {fileID: 0}
+--- !u!65 &1257121384153635707
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4371430179835474892}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 9.241717, z: 17.35928}
+  m_Center: {x: 0, y: 6.9730344, z: -5.9600716}
 --- !u!1 &6980553489590544942
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +169,6 @@ GameObject:
   - component: {fileID: 5339224945648429631}
   - component: {fileID: 3045656303062269497}
   - component: {fileID: 7819815032981358954}
-  - component: {fileID: 7679749094072421633}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -244,29 +241,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7679749094072421633
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6980553489590544942}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &7824925140043150677
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +252,6 @@ GameObject:
   - component: {fileID: 1420236503424241249}
   - component: {fileID: 7664061097426999285}
   - component: {fileID: 8034929091063054584}
-  - component: {fileID: 8621140933443496574}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -351,29 +324,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8621140933443496574
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7824925140043150677}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &8174569523197668029
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +335,6 @@ GameObject:
   - component: {fileID: 8722972691065357687}
   - component: {fileID: 4814543642196021386}
   - component: {fileID: 1475210109102541250}
-  - component: {fileID: 9009407794797225549}
   m_Layer: 0
   m_Name: Cylinder (2)
   m_TagString: Untagged
@@ -458,26 +407,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &9009407794797225549
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8174569523197668029}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

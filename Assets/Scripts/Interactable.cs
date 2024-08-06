@@ -1,17 +1,21 @@
-using TMPro;
 using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _iteractableText;
-    [SerializeField] private string _message = "Press E";
+    [field:SerializeField] public InteractiveView InteractiveView { get; private set; }
+    [SerializeField] private string _caption = "Мост";
+    [SerializeField, TextArea(3,10)] private string _message = "Для поднятия моста нажмите <color=yellow>(E)</color>";
+
+    private void Start()
+    {
+        InteractiveView.Inizialize(_caption, _message);
+    }
 
     public abstract void OnInteract();
 
     public void ShowMessage()
     {
         SetVisibleText(true);
-        _iteractableText.text = _message;
     }
 
     public void HideMessage()
@@ -19,5 +23,7 @@ public abstract class Interactable : MonoBehaviour
         SetVisibleText(false);
     }
 
-    private void SetVisibleText(bool visible)=> _iteractableText.gameObject.SetActive(visible);
+    private void SetVisibleText(bool visible) => InteractiveView.SetVisible(visible); //_interactableView.gameObject.SetActive(visible);
+
+    
 }

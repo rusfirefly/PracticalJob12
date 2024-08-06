@@ -4,6 +4,7 @@ using UnityEngine;
 public class HudHandler : MonoBehaviour
 {
     [SerializeField] private TMP_Text _coinText;
+    [SerializeField] private TMP_Text _messageTMP;
 
     private void OnEnable()
     {
@@ -19,4 +20,7 @@ public class HudHandler : MonoBehaviour
     {
         _coinText.text = $"Coin: {SaveHandler.instance.savesData.GetScore()}";
     }
+
+    public void SetMessage(string message) => _messageTMP.text = message;
+
 }

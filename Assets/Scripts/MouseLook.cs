@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    
+    private enum MouseButton { ClickLook = 1 }
     [SerializeField] private CinemachineFreeLook _freeLook;
     private float _speed;
     private float _defaulSpeed;
@@ -16,13 +16,13 @@ public class MouseLook : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(1))
+        if(Input.GetMouseButtonDown((int)MouseButton.ClickLook))
         {
             _speed = _defaulSpeed;
         }
         else
         {
-            if(Input.GetMouseButtonUp(1))
+            if(Input.GetMouseButtonUp((int)MouseButton.ClickLook))
             {
                 _speed = 0;
             }

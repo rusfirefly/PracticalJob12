@@ -9,6 +9,8 @@ public class Player : MonoBehaviour, IMovable
     [SerializeField] private ForceMode _forceMode;
     [SerializeField] private float _dieZone;
 
+    [SerializeField] private Canvas _canvasTest;
+
     private Vector3 _spawnPoint;
     private Interactable _interactable;
     private bool _isActiveSkill;
@@ -40,6 +42,14 @@ public class Player : MonoBehaviour, IMovable
         if (transform.position.y < _dieZone)
         {
             Die();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (_interactable)
+        {
+            _interactable.InteractiveView.LookAtCamera();
         }
     }
 
