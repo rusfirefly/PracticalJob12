@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 
@@ -51,6 +52,11 @@ public class SkillShowInvisibleObjects : MonoBehaviour
     {
         _isUseSkill = false;
         SetVisibleAllHideObjects();
+    }
+
+    public void ShowSkillInfo()
+    {
+        _skillView.ShowSkillInfo();
     }
 
     private void ColdownSkill()
