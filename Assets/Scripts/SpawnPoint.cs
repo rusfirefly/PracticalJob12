@@ -7,7 +7,6 @@ public class SpawnPoint : Interactable
 
     private bool _isActiveSpawnPoint;
     private Player _player;
-    
 
     private void OnTriggerEnter(Collider other)
     {

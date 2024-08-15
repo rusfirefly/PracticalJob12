@@ -6,7 +6,7 @@ public abstract class Interactable : MonoBehaviour
     [SerializeField] private string _caption;
     [SerializeField, TextArea(3,10)] private string _message;
 
-    private void Start()
+    private void Awake()
     {
         InteractiveView.Inizialize(_caption, _message);
     }
@@ -23,7 +23,7 @@ public abstract class Interactable : MonoBehaviour
         SetVisibleText(false);
     }
 
-    private void SetVisibleText(bool visible) => InteractiveView.SetVisible(visible); //_interactableView.gameObject.SetActive(visible);
+    private void SetVisibleText(bool visible) => InteractiveView.SetVisible(visible); 
 
     
 }
