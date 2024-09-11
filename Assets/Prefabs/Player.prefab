@@ -183,6 +183,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 3320456404719127537}
   _forceMode: 0
   _dieZone: -38
+  _canvasTest: {fileID: 0}
 --- !u!114 &1036949831744292254
 MonoBehaviour:
   m_ObjectHideFlags: 0
