@@ -296,6 +296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractiveView
       objectReference: {fileID: 0}
+    - target: {fileID: 594116607415248434, guid: 73c2d49daaf8e1f4fa58ac7a5a797d7d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1429063084433893967, guid: 73c2d49daaf8e1f4fa58ac7a5a797d7d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -379,6 +383,10 @@ PrefabInstance:
     - target: {fileID: 3775499724674522158, guid: 73c2d49daaf8e1f4fa58ac7a5a797d7d, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089966615295266603, guid: 73c2d49daaf8e1f4fa58ac7a5a797d7d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

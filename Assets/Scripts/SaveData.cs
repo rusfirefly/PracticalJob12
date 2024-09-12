@@ -1,3 +1,5 @@
+using UnityEngine.UIElements;
+
 [System.Serializable]
 public class DataGame
 {
@@ -5,6 +7,7 @@ public class DataGame
     public int PointID;
     public string PlayerName;
     public int Score;
+    public bool Key;
 }
 
 public class SaveData 
@@ -23,6 +26,7 @@ public class SaveData
         dataGame.PointID = 0;
         dataGame.PlayerName = "no name";
         dataGame.Score = 0;
+        dataGame.Key = false;
     }
 
     public void SetPlayerName(string name) => dataGame.PlayerName = name;
@@ -38,4 +42,8 @@ public class SaveData
     public int GetLevelID() => dataGame.LevelID;
 
     public int GetPointId() => dataGame.PointID;
+
+    public bool IsKey() => dataGame.Key;
+
+    public void PickUpKey() => dataGame.Key = true;
 }

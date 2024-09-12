@@ -103,12 +103,20 @@ public class Player : MonoBehaviour, IMovable
             _interactable.ShowMessage();
         }
 
-        if (other.gameObject.TryGetComponent(out ICollectible coin))
+        if (other.gameObject.TryGetComponent(out ICollectible collectebel))
         {
-            SaveHandler.instance.savesData.NewCoin();
-            SaveHandler.instance.Save();
+            collectebel.Collect();
 
-            coin.Collect();
+            if (other.gameObject.tag == "Key")
+            {
+                SaveHandler.instance.savesData.PickUpKey();
+            }
+            else
+            {
+                SaveHandler.instance.savesData.NewCoin();
+            }
+            
+            SaveHandler.instance.Save();
         }
     }
 

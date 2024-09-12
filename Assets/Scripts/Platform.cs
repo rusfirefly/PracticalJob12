@@ -1,10 +1,9 @@
-using System;
-using TMPro;
 using UnityEngine;
 
-public class Platform : MonoBehaviour
+public class Platform : ParticalsHandler
 {
     [SerializeField] private AnimationObject _animationObject;
+
     private IInteract _doorInteraction;
 
     private void Start()
@@ -15,10 +14,22 @@ public class Platform : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         _doorInteraction.Action();
+
+        if(particleSystem != null)
+        {
+            PlayPartical();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         _doorInteraction.Action();
+
+        if (particleSystem != null)
+        {
+            StopPartical();
+        }
     }
+
+
 }
