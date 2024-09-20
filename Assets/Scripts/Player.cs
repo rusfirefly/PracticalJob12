@@ -105,8 +105,6 @@ public class Player : MonoBehaviour, IMovable
 
         if (other.gameObject.TryGetComponent(out ICollectible collectebel))
         {
-            collectebel.Collect();
-
             if (other.gameObject.tag == "Key")
             {
                 SaveHandler.instance.savesData.PickUpKey();
@@ -117,6 +115,7 @@ public class Player : MonoBehaviour, IMovable
             }
             
             SaveHandler.instance.Save();
+            collectebel.Collect();
         }
     }
 
