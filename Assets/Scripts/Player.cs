@@ -47,6 +47,8 @@ public class Player : MonoBehaviour, IMovable
 
     private void FixedUpdate()
     {
+        _rigidbody.AddForce(Physics.gravity * _rigidbody.mass);
+
         if (_interactable)
         {
             _interactable.InteractiveView.LookAtCamera();
