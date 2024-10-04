@@ -14,7 +14,7 @@ public class Trap : MonoBehaviour
     {
         if(_isStart == false) return;
 
-        Mathf.Clamp(_positionIndex++,0, _positions.Length);
+        
 
         Debug.Log(_positionIndex);
     }
