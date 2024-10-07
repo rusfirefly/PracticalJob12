@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour
     private float _vertical;
     private float _horizontal;
     private Camera _camera;
+    private bool _isEnable;
 
     private void Awake()
     {
@@ -18,9 +19,13 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
+        if (_isEnable == false) return;
+
         _vertical = Input.GetAxis("Vertical") * _speed;
         _horizontal = Input.GetAxis("Horizontal") * _speed;
     }
+
+    public void EnableInput() => _isEnable = true;
 
     private void FixedUpdate()
     {

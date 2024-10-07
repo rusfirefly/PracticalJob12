@@ -49,7 +49,7 @@ public class AnimationObject : MonoBehaviour, IInteract
 
         }
         
-        _camera.DOShakePosition(2f, 10, 100, 90);
+        _camera.transform.DOShakePosition(2f, 10, 100, 90);
     }
 
 }
