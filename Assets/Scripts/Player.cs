@@ -9,8 +9,6 @@ public class Player : MonoBehaviour, IMovable
     [SerializeField] private ForceMode _forceMode;
     [SerializeField] private float _dieZone;
 
-    [SerializeField] private Canvas _canvasTest;
-
     private Vector3 _spawnPoint;
     private Interactable _interactable;
     private bool _isActiveSkill;
@@ -83,6 +81,7 @@ public class Player : MonoBehaviour, IMovable
 
     public void Die()
     {
+
         Respawn();
         StopPlayer();
     }
