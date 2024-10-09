@@ -79,6 +79,11 @@ public class Player : MonoBehaviour, IMovable
         }
     }
 
+    public void Die(IDieEffect effect)
+    {
+        effect.StartEffect();
+    }
+
     public void Die()
     {
 
@@ -91,6 +96,7 @@ public class Player : MonoBehaviour, IMovable
         _rigidbody.AddForce(move, _forceMode);
     }
 
+  
     private void OnStopSkillAction()
     {
         _isActiveSkill = false;
