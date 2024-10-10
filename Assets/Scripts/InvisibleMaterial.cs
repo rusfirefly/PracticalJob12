@@ -28,10 +28,10 @@ public class InvisibleMaterial : MonoBehaviour
     public void SetVisible()
     {
         _isVisible=!_isVisible;
-        ShowInvivsibleObjects();
+        ChangeInvivsibleObjects();
     }
 
-    private async void ShowInvivsibleObjects()
+    private async void ChangeInvivsibleObjects()
     {
         while (true)
         {

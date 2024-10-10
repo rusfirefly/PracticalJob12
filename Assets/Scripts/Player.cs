@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Analytics;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SkillShowInvisibleObjects))]
@@ -13,6 +14,7 @@ public class Player : MonoBehaviour, IMovable
     private Interactable _interactable;
     private bool _isActiveSkill;
     private SkillShowInvisibleObjects _skillShowInvisibleObjects;
+    private IDieEffect _dieEffect;
 
     public void Initialize(bool skillOpen = true)
     {
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour, IMovable
 
         if (transform.position.y < _dieZone)
         {
-            Die();
+            Die(new SampleDie());
         }
     }
 
@@ -79,13 +81,10 @@ public class Player : MonoBehaviour, IMovable
         }
     }
 
-    public void Die(IDieEffect effect)
+    public void Die(IDieEffect dieEffect)
     {
-        effect.StartEffect();
-    }
-
-    public void Die()
-    {
+        _dieEffect = dieEffect;
+        _dieEffect.StartDieEffect(transform.position);
 
         Respawn();
         StopPlayer();
@@ -96,7 +95,6 @@ public class Player : MonoBehaviour, IMovable
         _rigidbody.AddForce(move, _forceMode);
     }
 
-  
     private void OnStopSkillAction()
     {
         _isActiveSkill = false;

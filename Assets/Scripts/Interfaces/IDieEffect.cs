@@ -1,4 +1,7 @@
+using System.Transactions;
+using UnityEngine;
+
 public interface IDieEffect
 {
-    void StartEffect();
+    void StartDieEffect(Vector3 position);
 }
