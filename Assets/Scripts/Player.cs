@@ -9,11 +9,12 @@ public class Player : MonoBehaviour, IMovable
     [SerializeField] private ForceMode _forceMode;
     [SerializeField] private float _dieZone;
 
+    [SerializeField] private ParticleSystem _dieEffect;
+
     private Rigidbody _rigidbody;
     private Vector3 _spawnPoint;
     private Interactable _interactable;
     private SkillShowInvisibleObjects _skillShowInvisibleObjects;
-    private IDieEffect _dieEffect;
     private PlayerInput _playerInput;
 
     public void Initialize(bool skillOpen = true)
@@ -49,7 +50,7 @@ public class Player : MonoBehaviour, IMovable
     {
         if (transform.position.y < _dieZone)
         {
-            Die(new SampleDie());
+           Die(TypeZone.Height);
         }
     }
 
@@ -66,14 +67,13 @@ public class Player : MonoBehaviour, IMovable
         }
     }
 
-    public async void Die(IDieEffect dieEffect)
+    public async void Die(TypeZone typeZone)
     {
-        _dieEffect = dieEffect;
-        _dieEffect.StartDieEffect(transform.position);
+        Debug.Log("strat");
 
         await StartEffect();
-        Debug.Log("finish");
 
+        Debug.Log("finish");
         _playerInput.EnableInput();
 
         Respawn();
@@ -82,11 +82,7 @@ public class Player : MonoBehaviour, IMovable
 
     private async Task StartEffect()
     {
-        Debug.Log("start");
-        _playerInput.DisableInput();
-        StopPlayer();     
-        
-        await Task.Delay(2500);
+       await Task.Delay(2000);
     }
 
     public void Move(Vector3 move)
@@ -140,3 +136,4 @@ public class Player : MonoBehaviour, IMovable
         _rigidbody.angularVelocity = Vector3.zero;
     }
 }
+ 
