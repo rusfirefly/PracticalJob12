@@ -27,6 +27,8 @@ public class PlayerInput : MonoBehaviour
 
     public void EnableInput() => _isEnable = true;
 
+    public void DisableInput() => _isEnable = false;
+
     private void FixedUpdate()
     {
         Vector3 force = CalculeForce(_vertical, _horizontal);

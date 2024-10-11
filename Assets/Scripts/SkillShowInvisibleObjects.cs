@@ -32,7 +32,9 @@ public class SkillShowInvisibleObjects : MonoBehaviour
 
     private void Update()
     {
-        if(_isUseSkill)
+        SkillKeyInput();
+
+        if (_isUseSkill)
         {
             ColdownSkill();
         } 
@@ -57,6 +59,19 @@ public class SkillShowInvisibleObjects : MonoBehaviour
     public void ShowSkillInfo()
     {
         _skillView.ShowSkillInfo();
+    }
+
+    private void SkillKeyInput()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && isOpen)
+        {
+            _isUseSkill = !_isUseSkill;
+
+            if (_isUseSkill)
+                Use();
+            else
+                SkillStop();
+        }
     }
 
     private void ColdownSkill()

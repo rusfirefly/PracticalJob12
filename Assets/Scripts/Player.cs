@@ -1,32 +1,27 @@
+using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SkillShowInvisibleObjects))]
 
 public class Player : MonoBehaviour, IMovable
 {
-    [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private ForceMode _forceMode;
     [SerializeField] private float _dieZone;
 
+    private Rigidbody _rigidbody;
     private Vector3 _spawnPoint;
     private Interactable _interactable;
-    private bool _isActiveSkill;
     private SkillShowInvisibleObjects _skillShowInvisibleObjects;
     private IDieEffect _dieEffect;
+    private PlayerInput _playerInput;
 
     public void Initialize(bool skillOpen = true)
     {
         _skillShowInvisibleObjects = GetComponent<SkillShowInvisibleObjects>();
-        _skillShowInvisibleObjects.StopSkillAction += OnStopSkillAction;
         SetDefaultSpawnPosition();
         _skillShowInvisibleObjects.Initlialize(skillOpen);
-    }
-
-    private void OnDisable()
-    {
-        _skillShowInvisibleObjects.StopSkillAction -= OnStopSkillAction;
+        _playerInput = GetComponent<PlayerInput>();
     }
 
     private void OnValidate()
@@ -37,12 +32,7 @@ public class Player : MonoBehaviour, IMovable
     public void Update()
     {
         InteractableKeyInput();
-        SkillKeyInput();
-
-        if (transform.position.y < _dieZone)
-        {
-            Die(new SampleDie());
-        }
+        CheckDieZoneNegativeY();
     }
 
     private void FixedUpdate()
@@ -55,20 +45,15 @@ public class Player : MonoBehaviour, IMovable
         }
     }
 
-    private void SetDefaultSpawnPosition() => _spawnPoint = transform.position;
-
-    private void SkillKeyInput()
+    private void CheckDieZoneNegativeY()
     {
-        if (Input.GetKeyDown(KeyCode.F) && _skillShowInvisibleObjects.isOpen)
+        if (transform.position.y < _dieZone)
         {
-            _isActiveSkill = !_isActiveSkill;
-
-            if (_isActiveSkill)
-                _skillShowInvisibleObjects.Use();
-            else
-                _skillShowInvisibleObjects.SkillStop();
+            Die(new SampleDie());
         }
     }
+
+    private void SetDefaultSpawnPosition() => _spawnPoint = transform.position;
 
     private void InteractableKeyInput()
     {
@@ -81,23 +66,32 @@ public class Player : MonoBehaviour, IMovable
         }
     }
 
-    public void Die(IDieEffect dieEffect)
+    public async void Die(IDieEffect dieEffect)
     {
         _dieEffect = dieEffect;
         _dieEffect.StartDieEffect(transform.position);
+
+        await StartEffect();
+        Debug.Log("finish");
+
+        _playerInput.EnableInput();
 
         Respawn();
         StopPlayer();
     }
 
+    private async Task StartEffect()
+    {
+        Debug.Log("start");
+        _playerInput.DisableInput();
+        StopPlayer();     
+        
+        await Task.Delay(2500);
+    }
+
     public void Move(Vector3 move)
     {
         _rigidbody.AddForce(move, _forceMode);
-    }
-
-    private void OnStopSkillAction()
-    {
-        _isActiveSkill = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -108,7 +102,7 @@ public class Player : MonoBehaviour, IMovable
             _interactable.ShowMessage();
         }
 
-        if (other.gameObject.TryGetComponent(out ICollectible collectebel))
+        if (other.gameObject.TryGetComponent(out ICollectible collectebal))
         {
             if (other.gameObject.tag == "Key")
             {
@@ -120,7 +114,7 @@ public class Player : MonoBehaviour, IMovable
             }
             
             SaveHandler.instance.Save();
-            collectebel.Collect();
+            collectebal.Collect();
         }
     }
 
