@@ -25,9 +25,9 @@ public class PlayerInput : MonoBehaviour
         _horizontal = Input.GetAxis("Horizontal") * _speed;
     }
 
-    public void EnableInput() => _isEnable = true;
+    public void Enable() => _isEnable = true;
 
-    public void DisableInput() => _isEnable = false;
+    public void Disable() => _isEnable = false;
 
     private void FixedUpdate()
     {

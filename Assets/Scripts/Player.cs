@@ -9,8 +9,8 @@ public class Player : MonoBehaviour, IMovable
     [SerializeField] private ForceMode _forceMode;
     [SerializeField] private float _dieZone;
 
-    [SerializeField] private ParticleSystem _dieEffect;
-
+  
+    private IDeathEffect _deathEffect;
     private Rigidbody _rigidbody;
     private Vector3 _spawnPoint;
     private Interactable _interactable;
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour, IMovable
     {
         if (transform.position.y < _dieZone)
         {
-           Die(TypeZone.Height);
+           Die(new DeathByFalling());
         }
     }
 
@@ -67,14 +67,16 @@ public class Player : MonoBehaviour, IMovable
         }
     }
 
-    public async void Die(TypeZone typeZone)
+    public async void Die(IDeathEffect deathEffect)
     {
+
         Debug.Log("strat");
+        _playerInput.Disable();
 
         await StartEffect();
 
         Debug.Log("finish");
-        _playerInput.EnableInput();
+        _playerInput.Enable();
 
         Respawn();
         StopPlayer();
