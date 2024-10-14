@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DeathByWater : MonoBehaviour
+public class DeathByWater : DeathEffect, IDeathEffect
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Die(Vector3 position)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("water");
     }
 }

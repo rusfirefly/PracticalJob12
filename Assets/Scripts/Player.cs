@@ -69,8 +69,8 @@ public class Player : MonoBehaviour, IMovable
 
     public async void Die(IDeathEffect deathEffect)
     {
-
         Debug.Log("strat");
+        _deathEffect = deathEffect;
         _playerInput.Disable();
 
         await StartEffect();
@@ -84,7 +84,8 @@ public class Player : MonoBehaviour, IMovable
 
     private async Task StartEffect()
     {
-       await Task.Delay(2000);
+        _deathEffect.Die(transform.position);
+        await Task.Delay(2000);
     }
 
     public void Move(Vector3 move)
