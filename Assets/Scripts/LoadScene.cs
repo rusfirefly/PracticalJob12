@@ -22,6 +22,7 @@ public class LoadScene : MonoBehaviour
 
         while (asynkLoad.isDone == false)
         {
+            Debug.Log(asynkLoad.progress);
             yield return null;
         }
     }

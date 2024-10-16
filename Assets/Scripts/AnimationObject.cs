@@ -17,6 +17,8 @@ public class AnimationObject : MonoBehaviour, IInteract
 
     private void Start()
     {
+        //load game data
+        //isOpen
         _doorClose = transform.localPosition.y;
         _doorOpen = _endPosition;
         _camera = Camera.main;

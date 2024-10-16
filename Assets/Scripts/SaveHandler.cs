@@ -42,7 +42,7 @@ public class SaveHandler : MonoBehaviour
 
     public void Save()
     {
-        string json = JsonUtility.ToJson(savesData.dataGame);
+        string json = JsonUtility.ToJson(savesData.DataGame);
         Debug.Log(json);
         File.WriteAllText(_pathData, json);
     }

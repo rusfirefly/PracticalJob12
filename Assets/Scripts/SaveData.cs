@@ -1,4 +1,3 @@
-using UnityEngine.UIElements;
 
 [System.Serializable]
 public class DataGame
@@ -12,7 +11,7 @@ public class DataGame
 
 public class SaveData 
 {
-    public DataGame dataGame { get; private set; }
+    public DataGame DataGame { get; private set; }
 
     public SaveData() 
     {
@@ -21,29 +20,29 @@ public class SaveData
 
     private void DefauldValue()
     {
-        dataGame = new DataGame();
-        dataGame.LevelID = 0;
-        dataGame.PointID = 0;
-        dataGame.PlayerName = "no name";
-        dataGame.Score = 0;
-        dataGame.Key = false;
+        DataGame = new DataGame();
+        DataGame.LevelID = 0;
+        DataGame.PointID = 0;
+        DataGame.PlayerName = "no name";
+        DataGame.Score = 0;
+        DataGame.Key = false;
     }
 
-    public void SetPlayerName(string name) => dataGame.PlayerName = name;
+    public void SetPlayerName(string name) => DataGame.PlayerName = name;
     
-    public void NewCoin() => dataGame.Score++;
+    public void NewCoin() => DataGame.Score++;
 
-    public void SetPoint(int pointId) => dataGame.PointID = pointId;
+    public void SetPoint(int pointId) => DataGame.PointID = pointId;
 
-    public void SetLevelId(int levelID)=> dataGame.LevelID = levelID;
+    public void SetLevelId(int levelID)=> DataGame.LevelID = levelID;
 
-    public int GetScore() => dataGame.Score;
+    public int GetScore() => DataGame.Score;
 
-    public int GetLevelID() => dataGame.LevelID;
+    public int GetLevelID() => DataGame.LevelID;
 
-    public int GetPointId() => dataGame.PointID;
+    public int GetPointId() => DataGame.PointID;
 
-    public bool IsKey() => dataGame.Key;
+    public bool IsKey() => DataGame.Key;
 
-    public void PickUpKey() => dataGame.Key = true;
+    public void PickUpKey() => DataGame.Key = true;
 }
