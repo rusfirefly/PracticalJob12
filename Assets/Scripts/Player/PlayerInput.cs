@@ -5,11 +5,11 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private IMovable _player;
     [SerializeField] private bool _debugDrawForce;
+    [SerializeField] private bool _isEnable;
   
     private float _vertical;
     private float _horizontal;
     private Camera _camera;
-    private bool _isEnable;
 
     private void Awake()
     {
