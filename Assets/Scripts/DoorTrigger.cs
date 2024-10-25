@@ -7,7 +7,7 @@ public class DoorTrigger : Interactable
 
     public override void OnInteract()
     {
-        if (SaveHandler.instance.savesData.IsKey() == false) return;
+        if (SaveHandler.Instance.SavedData.IsKey == false) return;
 
         if (_isOpenDoor) return;
 

@@ -3,18 +3,19 @@ using System.IO;
 
 public class SaveHandler : MonoBehaviour
 {
-    public SaveData savesData { get; private set; }
+    public SaveData SavedData { get; private set; }
+    private DataGame LoadedDataGame;
     private string _pathData;
-    public static SaveHandler instance;
+    public static SaveHandler Instance;
 
-    public void Start()
+    public void Singlton()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }else
         {
-            Destroy(instance);
+            Destroy(Instance);
         }
 
         DontDestroyOnLoad(gameObject);
@@ -24,25 +25,30 @@ public class SaveHandler : MonoBehaviour
     public void Initialized()
     {
         _pathData = $"{Application.dataPath}/Gamedata.json";
-        
-        savesData = Load();
-        if(savesData == null)
+
+        LoadedDataGame = Load();
+
+        if(LoadedDataGame == null)
         {
-            savesData = new SaveData();
+            SavedData = new SaveData();
             Save();
+        }else
+        {
+            SavedData = new SaveData();
+            SavedData.DataGame = LoadedDataGame;
         }
     }
 
-    private SaveData Load()
+    private DataGame Load()
     {
         if (!File.Exists(_pathData)) return null;
         string json = File.ReadAllText(_pathData);
-        return JsonUtility.FromJson<SaveData>(json);
+        return JsonUtility.FromJson<DataGame>(json);
     }
 
     public void Save()
     {
-        string json = JsonUtility.ToJson(savesData.DataGame);
+        string json = JsonUtility.ToJson(SavedData.DataGame);
         Debug.Log(json);
         File.WriteAllText(_pathData, json);
     }

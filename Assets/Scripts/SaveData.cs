@@ -1,17 +1,31 @@
+using System.Diagnostics;
+
+public enum SceneID { MainMenu = 0, LoadScene = 1, LobbyScene=2, TutorialScene = 3, SceneNumber=4}
 
 [System.Serializable]
 public class DataGame
 {
-    public int LevelID;
+    public int CurrentLevelID;
+    public int LobbyPortalID;
     public int PointID;
-    public string PlayerName;
     public int Score;
     public bool Key;
 }
 
+
 public class SaveData 
 {
-    public DataGame DataGame { get; private set; }
+    public DataGame DataGame { get; set; }
+
+    public int GetScore => DataGame.Score;
+
+    public int GetLevelID => DataGame.CurrentLevelID;
+
+    public int GetPointId => DataGame.PointID;
+
+    public bool IsKey => DataGame.Key;
+
+    public int GetLobbyPortalID=> DataGame.LobbyPortalID;
 
     public SaveData() 
     {
@@ -21,28 +35,20 @@ public class SaveData
     private void DefauldValue()
     {
         DataGame = new DataGame();
-        DataGame.LevelID = 0;
+        DataGame.CurrentLevelID = (int)SceneID.TutorialScene;
         DataGame.PointID = 0;
-        DataGame.PlayerName = "no name";
         DataGame.Score = 0;
         DataGame.Key = false;
+        DataGame.LobbyPortalID = -1;
     }
 
-    public void SetPlayerName(string name) => DataGame.PlayerName = name;
-    
     public void NewCoin() => DataGame.Score++;
 
     public void SetPoint(int pointId) => DataGame.PointID = pointId;
 
-    public void SetLevelId(int levelID)=> DataGame.LevelID = levelID;
-
-    public int GetScore() => DataGame.Score;
-
-    public int GetLevelID() => DataGame.LevelID;
-
-    public int GetPointId() => DataGame.PointID;
-
-    public bool IsKey() => DataGame.Key;
+    public void SetLevelId(int levelID)=> DataGame.CurrentLevelID = levelID;
+    
+    public void SetPortallId(int lobbyPortaID)=> DataGame.LobbyPortalID = lobbyPortaID;
 
     public void PickUpKey() => DataGame.Key = true;
 }

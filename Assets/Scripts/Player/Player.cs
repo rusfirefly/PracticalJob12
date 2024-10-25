@@ -93,14 +93,14 @@ public class Player : MonoBehaviour, IMovable
         {
             if (other.gameObject.tag == "Key")
             {
-                SaveHandler.instance.savesData.PickUpKey();
+                SaveHandler.Instance.SavedData.PickUpKey();
             }
             else
             {
-                SaveHandler.instance.savesData.NewCoin();
+                SaveHandler.Instance.SavedData.NewCoin();
             }
             
-            SaveHandler.instance.Save();
+            SaveHandler.Instance.Save();
             collectebal.Collect();
         }
     }

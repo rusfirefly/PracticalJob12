@@ -1,14 +1,36 @@
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-    [SerializeField] private string _sceneName;
+    [SerializeField] private bool _isMainMenu;
+    private int _sceneID;
 
-    private void Awake()
+    private async void Start()
     {
-        Load();
+        if (_isMainMenu) return;
+        int portalId = SaveHandler.Instance.SavedData.GetLobbyPortalID;
+
+        if (portalId == -1)
+        {
+            _sceneID = SaveHandler.Instance.SavedData.GetLevelID;
+        }
+        else
+        {
+            _sceneID = portalId;
+        }
+
+
+        await Task.Delay(2500);
+        Load(_sceneID);
+    }
+
+    public void Load(int sceneId)
+    {
+        _sceneID = sceneId;
+        StartCoroutine(AsynkLoad());
     }
 
     public void Load()
@@ -18,11 +40,10 @@ public class LoadScene : MonoBehaviour
 
     private IEnumerator AsynkLoad()
     {
-        AsyncOperation asynkLoad = SceneManager.LoadSceneAsync(_sceneName);
+        AsyncOperation asynkLoad = SceneManager.LoadSceneAsync(_sceneID);
 
         while (asynkLoad.isDone == false)
         {
-            Debug.Log(asynkLoad.progress);
             yield return null;
         }
     }

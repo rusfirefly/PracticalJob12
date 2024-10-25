@@ -23,7 +23,7 @@ public class HudHandler : MonoBehaviour
 
     private void OnCollectible()
     {
-        _coinText.text = $"Coin: {SaveHandler.instance.savesData.GetScore()}";
+        _coinText.text = $"Coin: {SaveHandler.Instance.SavedData.GetScore}";
     }
 
 }
