@@ -6,8 +6,17 @@ public class Trap : MonoBehaviour
 {
     [SerializeField] private List<Transform> _points;
     [SerializeField] private PointByPointMover _mover;
+    [SerializeField] private bool _isStart;
 
     private bool _isEnd;
+
+    private void Start()
+    {
+        if(_isStart)
+        {
+            Enabele();
+        }
+    }
 
     public void Enabele()
     {

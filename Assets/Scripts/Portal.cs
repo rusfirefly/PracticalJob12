@@ -24,11 +24,9 @@ public class Portal : MonoBehaviour
             {
                 SaveHandler.Instance.SavedData.SetPortallId(-1);
                 SaveHandler.Instance.SavedData.SetLevelId((int)(++SceneID));
-                Debug.Log("1");
             }
             else
             {
-                Debug.Log("2");
                 SaveHandler.Instance.SavedData.SetPortallId(SceneNumber);
             }
 

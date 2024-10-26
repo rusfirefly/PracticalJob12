@@ -54,4 +54,5 @@ public class AnimationObject : MonoBehaviour, IInteract
         _camera.transform.DOShakePosition(2f, 10, 100, 90);
     }
 
+
 }

@@ -1,3 +1,4 @@
+using Mono.Cecil.Cil;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -9,7 +10,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class Player : MonoBehaviour, IMovable
 {
     [SerializeField] private ForceMode _forceMode;
-    [SerializeField] private float _dieZone;
+    [SerializeField] private bool _isStart;
 
     private Rigidbody _rigidbody;
     private Vector3 _spawnPoint;
@@ -18,6 +19,14 @@ public class Player : MonoBehaviour, IMovable
     private PlayerInput _playerInput;
     private Animator _animator;
     private PlayerDeathEffect _playerDeathEffect;
+
+    private void Start()
+    {
+       if(_isStart)
+       {
+            Initialize();
+       }
+    }
 
     public void Initialize(bool skillOpen = true)
     {
@@ -37,7 +46,6 @@ public class Player : MonoBehaviour, IMovable
     public void Update()
     {
         InteractableKeyInput();
-        CheckDieZoneNegativeY();
     }
 
     private void FixedUpdate()
@@ -47,14 +55,6 @@ public class Player : MonoBehaviour, IMovable
         if (_interactable)
         {
             _interactable.InteractiveView.LookAtCamera();
-        }
-    }
-
-    private void CheckDieZoneNegativeY()
-    {
-        if (transform.position.y < _dieZone)
-        {
-            Die();
         }
     }
 
