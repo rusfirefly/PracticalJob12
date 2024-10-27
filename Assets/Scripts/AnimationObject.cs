@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class AnimationObject : MonoBehaviour, IInteract
 {
-    private enum TypeAnimation {DOMoveY, DOMoveX, DOMoveZ}
+    private enum TypeAnimation {DOMoveY, DOMoveX, DOMoveZ, StartAniataion}
 
+    [SerializeField] private TypeAnimation _typeAnimation;
     [SerializeField] private Ease _easeEffect;
     [SerializeField] private float _endPosition;
     [SerializeField] private float _duration;
-    [SerializeField] private TypeAnimation _typeAnimation;
     [SerializeField] private Camera _camera;
 
     private bool _isOpen;
@@ -17,8 +17,6 @@ public class AnimationObject : MonoBehaviour, IInteract
 
     private void Start()
     {
-        //load game data
-        //isOpen
         _doorClose = transform.localPosition.y;
         _doorOpen = _endPosition;
         _camera = Camera.main;
@@ -48,11 +46,18 @@ public class AnimationObject : MonoBehaviour, IInteract
             case TypeAnimation.DOMoveZ:
                 transform.DOLocalMoveZ(stateDoor, _duration).SetEase(_easeEffect);
                 break;
+            case TypeAnimation.StartAniataion:
+                
+                break;
 
         }
-        
+
         _camera.transform.DOShakePosition(2f, 10, 100, 90);
     }
 
+    private void StartAnimation( )
+    {
 
+    }
 }
+
