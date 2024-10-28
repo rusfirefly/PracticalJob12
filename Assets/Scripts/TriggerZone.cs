@@ -3,7 +3,8 @@ using UnityEngine;
 public class TriggerZone : Interactable
 {
     [SerializeField] private AnimationObject _animationObject;
-    
+    [SerializeField] private IInteract _interact;
+
     private IInteract _objectInteract;
 
     private void Start()

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AnimationObject : MonoBehaviour, IInteract
 {
-    private enum TypeAnimation {DOMoveY, DOMoveX, DOMoveZ, StartAniataion}
+    private enum TypeAnimation {DOMoveY, DOMoveX, DOMoveZ, StartAnimation}
 
     [SerializeField] private TypeAnimation _typeAnimation;
     [SerializeField] private Ease _easeEffect;
@@ -46,8 +46,8 @@ public class AnimationObject : MonoBehaviour, IInteract
             case TypeAnimation.DOMoveZ:
                 transform.DOLocalMoveZ(stateDoor, _duration).SetEase(_easeEffect);
                 break;
-            case TypeAnimation.StartAniataion:
-                
+            case TypeAnimation.StartAnimation:
+                StartAnimation();
                 break;
 
         }
