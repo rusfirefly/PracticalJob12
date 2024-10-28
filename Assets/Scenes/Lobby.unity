@@ -5334,7 +5334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneID: 4
   IsLobby: 1
-  SceneNumber: 4
+  SceneNumber: 5
 --- !u!1 &376522550
 GameObject:
   m_ObjectHideFlags: 0
@@ -6356,8 +6356,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneID: 4
-  IsLobby: 1
-  SceneNumber: 4
+  IsLobby: 0
+  SceneNumber: 6
 --- !u!1 &841139283
 GameObject:
   m_ObjectHideFlags: 0
@@ -16675,7 +16675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 209585549487525387, guid: 299b2aa91418e0d42a939d4c8b600557, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.7729988
+      value: 1.5529976
       objectReference: {fileID: 0}
     - target: {fileID: 209585549487525387, guid: 299b2aa91418e0d42a939d4c8b600557, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16699,7 +16699,7 @@ PrefabInstance:
       objectReference: {fileID: 1258399095}
     - target: {fileID: 3536798248669751837, guid: 299b2aa91418e0d42a939d4c8b600557, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.7729988
+      value: 1.5529976
       objectReference: {fileID: 0}
     - target: {fileID: 3536798248669751837, guid: 299b2aa91418e0d42a939d4c8b600557, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17006,7 +17006,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4406125740452649178, guid: 3f775a748fb41d4428f934d85e120c8a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -40.78
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 4406125740452649178, guid: 3f775a748fb41d4428f934d85e120c8a, type: 3}
       propertyPath: m_LocalPosition.y

@@ -103,7 +103,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0577e85138ec8b7489642acd77083593, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -252,7 +252,6 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: f9230c53dc26a8b44b909658fbf4ebac, type: 2}
-    - {fileID: 11400000, guid: a73051a236ef71a48a3ed628c7ddf31f, type: 2}
     - {fileID: 11400000, guid: 848f15161b9e4ca4b803e6cb4d656bf8, type: 2}
     m_Events:
     - m_PersistentCalls:
@@ -268,20 +267,6 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 930294812675952118}
-          m_TargetAssemblyTypeName: Player, Assembly-CSharp
-          m_MethodName: Initialize
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:

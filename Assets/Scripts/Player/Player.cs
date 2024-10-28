@@ -19,7 +19,7 @@ public class Player : MonoBehaviour, IMovable
     private Animator _animator;
     private PlayerDeathEffect _playerDeathEffect;
 
-     public void Initialize(bool skillOpen = true)
+    public void Initialize(bool skillOpen = true)
     {
         _skillShowInvisibleObjects = GetComponent<SkillShowInvisibleObjects>();
         SetDefaultSpawnPosition();

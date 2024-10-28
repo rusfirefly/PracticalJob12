@@ -9,7 +9,7 @@ public class Point : MonoBehaviour
     [SerializeField] private bool _isEnable;
     [SerializeField] private float _timerDisablePartical = 3f;
     private ParticleSystem[] _particals;
-    private BoxCollider _boxCollider;
+    private BoxCollider _boxColliderTriger;
     private float _timeOnEnableLight = 0.1f;
     private float _newAlpha = 15;
     private int _maxPartical=2;
@@ -17,8 +17,9 @@ public class Point : MonoBehaviour
     private void Start()
     {
         _particals = GetComponentsInChildren<ParticleSystem>();
-        _boxCollider = GetComponent<BoxCollider>();
-        _boxCollider.enabled = false;
+        _boxColliderTriger = GetComponent<BoxCollider>();
+
+        SetStateTrigger(false);
 
         if (_isEnable)
         {
@@ -34,8 +35,9 @@ public class Point : MonoBehaviour
 
     public void Show()
     {
-        _boxCollider.enabled = true;
-        foreach(ParticleSystem partical in _particals)
+        SetStateTrigger(true);
+
+        foreach (ParticleSystem partical in _particals)
         {
             partical.Play();
         }
@@ -49,13 +51,19 @@ public class Point : MonoBehaviour
     [System.Obsolete]
     private IEnumerator HidePartical()
     {
-        if (_particals.Length < 1) yield return null;
+        if (_particals.Length < 1)
+        {
+            yield return null;
+        }
 
         _particals[0].maxParticles = _maxPartical;
+
         Color color = _particals[1].startColor;
         color.a = _newAlpha;
         ChangeAlpha(color);
+
         yield return new WaitForSeconds(_timerDisablePartical);
+
         PointComplete?.Invoke();
         Hide();
     }
@@ -65,5 +73,10 @@ public class Point : MonoBehaviour
     {
         _particals[1].startColor = color;
         _particals[2].startColor = color;
+    }
+
+    private void SetStateTrigger(bool isState)
+    {
+        _boxColliderTriger.enabled = isState;
     }
 }
