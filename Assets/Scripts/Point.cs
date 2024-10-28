@@ -9,6 +9,7 @@ public class Point : MonoBehaviour
     [SerializeField] private bool _isEnable;
     [SerializeField] private float _timerDisablePartical = 3f;
     private ParticleSystem[] _particals;
+    private BoxCollider _boxCollider;
     private float _timeOnEnableLight = 0.1f;
     private float _newAlpha = 15;
     private int _maxPartical=2;
@@ -16,7 +17,9 @@ public class Point : MonoBehaviour
     private void Start()
     {
         _particals = GetComponentsInChildren<ParticleSystem>();
-        
+        _boxCollider = GetComponent<BoxCollider>();
+        _boxCollider.enabled = false;
+
         if (_isEnable)
         {
             Show();
@@ -31,6 +34,7 @@ public class Point : MonoBehaviour
 
     public void Show()
     {
+        _boxCollider.enabled = true;
         foreach(ParticleSystem partical in _particals)
         {
             partical.Play();

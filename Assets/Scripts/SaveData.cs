@@ -51,4 +51,5 @@ public class SaveData
     public void SetPortallId(int lobbyPortaID)=> DataGame.LobbyPortalID = lobbyPortaID;
 
     public void PickUpKey() => DataGame.Key = true;
+
 }

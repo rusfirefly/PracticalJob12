@@ -10,7 +10,6 @@ using static UnityEngine.Rendering.DebugUI;
 public class Player : MonoBehaviour, IMovable
 {
     [SerializeField] private ForceMode _forceMode;
-    [SerializeField] private bool _isStart;
 
     private Rigidbody _rigidbody;
     private Vector3 _spawnPoint;
@@ -20,15 +19,7 @@ public class Player : MonoBehaviour, IMovable
     private Animator _animator;
     private PlayerDeathEffect _playerDeathEffect;
 
-    private void Start()
-    {
-       if(_isStart)
-       {
-            Initialize();
-       }
-    }
-
-    public void Initialize(bool skillOpen = true)
+     public void Initialize(bool skillOpen = true)
     {
         _skillShowInvisibleObjects = GetComponent<SkillShowInvisibleObjects>();
         SetDefaultSpawnPosition();
