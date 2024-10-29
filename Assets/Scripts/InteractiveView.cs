@@ -6,6 +6,7 @@ public class InteractiveView : MonoBehaviour
     [SerializeField] private Canvas _interactableView;
     [SerializeField] private TMP_Text _captionTMP;
     [SerializeField] private TMP_Text _messageTMP;
+    [SerializeField] private bool _isLockCamera;
 
     public void Inizialize(string caption, string message)
     {
@@ -17,6 +18,8 @@ public class InteractiveView : MonoBehaviour
 
     public void LookAtCamera()
     {
+        if (_isLockCamera == false) return;
+
         Vector3 direction = Camera.main.transform.forward;
         direction.y = 0;
         Quaternion rotation = Quaternion.LookRotation(direction);

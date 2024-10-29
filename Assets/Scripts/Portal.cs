@@ -11,11 +11,6 @@ public class Portal : MonoBehaviour
     public bool IsLobby;
     public int SceneNumber;
 
-    private void Start()
-    {
-        Debug.Log($"{gameObject.name}, {SceneNumber}");
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag=="Player")
@@ -53,10 +48,7 @@ public class PortalEditor: Editor
     {
         _serPortal.Update();
 
-        //EditorGUILayout.BeginHorizontal();
         _portal.IsLobby = EditorGUILayout.ToggleLeft(new GUIContent("IsLobby"), _portal.IsLobby);
-        //EditorGUILayout.EndHorizontal();
-
         _portal.SceneID = (SceneID)EditorGUILayout.EnumPopup(new GUIContent("Scene ID"), _portal.SceneID);
 
         if (_portal.SceneID == SceneID.SceneNumber)
