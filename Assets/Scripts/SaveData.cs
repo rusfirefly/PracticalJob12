@@ -1,15 +1,55 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 public enum SceneID { MainMenu = 0, LoadScene = 1, LobbyScene=2, TutorialScene = 3, SceneNumber=4}
 
 [System.Serializable]
 public class DataGame
 {
+    public List<Level> Levels;
+
+    public DataGame()
+    {
+        Levels = new List<Level>();
+    }
+
     public int CurrentLevelID;
     public int LobbyPortalID;
     public int PointID;
     public int Score;
     public bool Key;
+}
+
+[System.Serializable]
+public class Level
+{
+    public int LevelID { get; private set; }    
+    public int CurrentCoin;
+    public int Coin { get; private set; }
+    public int CountCoin { get; private set; }
+    
+    public Level()
+    {
+        ClearInfoAboutLevel();
+    }
+
+    public void SetInformationAboutLevel(int coint, int countCoinInLevele)
+    {
+        Coin = coint;
+        CountCoin = countCoinInLevele;
+    }
+
+    public void UpdateCoint(int coin)
+    {
+        Coin = coin;
+    }
+
+    public void ClearInfoAboutLevel()
+    {
+        CountCoin = CountCoin = LevelID = 0;
+    }
 }
 
 public class SaveData 
@@ -39,6 +79,9 @@ public class SaveData
         DataGame.Score = 0;
         DataGame.Key = false;
         DataGame.LobbyPortalID = -1;
+
+        Level firstLevel = new Level();
+        DataGame.Levels.Add(firstLevel);
     }
 
     public void NewCoin() => DataGame.Score++;
