@@ -141,7 +141,7 @@ Material:
     - _FoamDistance: 0.2
     - _FoamScale: 100
     - _FoamSpeed: 0.5
-    - _Foam_Amount: 0.757
+    - _Foam_Amount: 0.454
     - _Foam_Density: 0.1
     - _Foam_Speed: 0.5
     - _GlossMapScale: 0
