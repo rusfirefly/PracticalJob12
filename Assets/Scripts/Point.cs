@@ -14,7 +14,7 @@ public class Point : MonoBehaviour
     private float _newAlpha = 15;
     private int _maxPartical=2;
 
-    private void Start()
+    private void Awake()
     {
         _particals = GetComponentsInChildren<ParticleSystem>();
         _boxColliderTriger = GetComponent<BoxCollider>();
@@ -25,6 +25,11 @@ public class Point : MonoBehaviour
         {
             Show();
         }
+    }
+
+    private void OnValidate()
+    {
+        _boxColliderTriger??=GetComponent<BoxCollider>();
     }
 
     [System.Obsolete]

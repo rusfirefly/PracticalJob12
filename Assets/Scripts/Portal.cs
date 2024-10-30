@@ -8,23 +8,13 @@ using UnityEditor;
 public class Portal : MonoBehaviour
 {
     public SceneID SceneID;
-    public bool IsLobby;
     public int SceneNumber;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag=="Player")
+        if(other.tag == "Player")
         {
-            if (IsLobby == false)
-            {
-                SaveHandler.Instance.SavedData.SetPortallId(-1);
-                SaveHandler.Instance.SavedData.SetLevelId((int)(++SceneID));
-            }
-            else
-            {
-                SaveHandler.Instance.SavedData.SetPortallId(SceneNumber);
-            }
-
+            SaveHandler.Instance.SavedData.SetPortallId(SceneNumber);
             SaveHandler.Instance.Save();
             SceneManager.LoadScene((int)SceneID.LoadScene);
         }
@@ -48,7 +38,6 @@ public class PortalEditor: Editor
     {
         _serPortal.Update();
 
-        _portal.IsLobby = EditorGUILayout.ToggleLeft(new GUIContent("IsLobby"), _portal.IsLobby);
         _portal.SceneID = (SceneID)EditorGUILayout.EnumPopup(new GUIContent("Scene ID"), _portal.SceneID);
 
         if (_portal.SceneID == SceneID.SceneNumber)

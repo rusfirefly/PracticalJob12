@@ -12,7 +12,6 @@ public class DataGame
     public bool Key;
 }
 
-
 public class SaveData 
 {
     public DataGame DataGame { get; set; }
