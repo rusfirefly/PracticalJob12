@@ -88,7 +88,7 @@ public class Player : MonoBehaviour, IMovable
                 SaveHandler.Instance.SavedData.NewCoin();
             }
             
-            SaveHandler.Instance.Save();
+//            SaveHandler.Instance.Save();
             collectebal.Collect();
         }
     }

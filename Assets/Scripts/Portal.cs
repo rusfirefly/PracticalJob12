@@ -10,12 +10,17 @@ public class Portal : MonoBehaviour
     public SceneID SceneID;
     public int SceneNumber;
 
+    private SaveHandler Instance => SaveHandler.Instance;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            SaveHandler.Instance.SavedData.SetPortallId(SceneNumber);
-            SaveHandler.Instance.Save();
+            int currentLevel = SceneManager.GetActiveScene().buildIndex - 3;
+            Instance.SavedData.SetCurrentLevelId(currentLevel);
+            Instance.SavedData.SetPortallId(SceneNumber);
+            Instance.Save();
+            
             SceneManager.LoadScene((int)SceneID.LoadScene);
         }
     }
@@ -49,9 +54,6 @@ public class PortalEditor: Editor
             EditorGUILayout.EndHorizontal();
             EditorGUI.indentLevel--;
         }
-        
-
-        
     }
 }
 #endif

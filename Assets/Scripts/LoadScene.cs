@@ -6,22 +6,22 @@ using UnityEngine.SceneManagement;
 public class LoadScene : MonoBehaviour
 {
     [SerializeField] private bool _isMainMenu;
+    
     private int _sceneID;
 
     private async void Start()
     {
         if (_isMainMenu) return;
-        int portalId = SaveHandler.Instance.SavedData.GetLobbyPortalID;
+        int? portalId = SaveHandler.Instance.SavedData.DataGame.PortalID;
 
-        if (portalId == -1)
+        if (portalId == null)
         {
             _sceneID = SaveHandler.Instance.SavedData.GetLevelID;
         }
         else
         {
-            _sceneID = portalId;
+            _sceneID = (int)portalId;
         }
-
 
         await Task.Delay(2500);
         Load(_sceneID);

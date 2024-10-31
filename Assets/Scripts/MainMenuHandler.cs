@@ -1,4 +1,3 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -43,8 +42,7 @@ public class MainMenuHandler : MonoBehaviour
 
     private void SaveSceneID(SceneID sceneId)
     {
-        SaveHandler.Instance.SavedData.DataGame.LobbyPortalID = (int)sceneId;
+        SaveHandler.Instance.SavedData.DataGame.PortalID = (int)sceneId;
         SaveHandler.Instance.Save();
-
     }
 }

@@ -7,23 +7,21 @@ public class HudHandler : MonoBehaviour
     [SerializeField] private TMP_Text _messageTMP;
     [SerializeField] private TMP_Text _keyMessage;
 
-    private void OnEnable()
-    {
-        Coin.Collectible += OnCollectible;
-    }
-
-    private void OnDisable()
-    {
-        Coin.Collectible -= OnCollectible;
-    }
+    private SaveHandler Instance => SaveHandler.Instance;
+    private int _currentLevelId => Instance.SavedData.GetLevelID - 3;
 
     public void ShomMessageKey() => _keyMessage.gameObject.SetActive(true);
 
     public void SetMessage(string message) => _messageTMP.text = message;
 
-    private void OnCollectible()
+    public void ClearCoinView()
     {
-        _coinText.text = $"Coin: {SaveHandler.Instance.SavedData.GetScore}";
+        SetCoinText(0);
+    }
+
+    public void SetCoinText(int coin)
+    {
+        _coinText.text = $"Coin: {coin}/{Instance.SavedData.DataGame.CountCoinInLevel}";
     }
 
 }

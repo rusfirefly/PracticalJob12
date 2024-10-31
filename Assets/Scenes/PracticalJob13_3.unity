@@ -6672,9 +6672,17 @@ PrefabInstance:
       propertyPath: _saveHandler
       value: 
       objectReference: {fileID: 1150197844}
+    - target: {fileID: 3314404097364031133, guid: aa4f4cab06a3f5b4881beca26f0242e9, type: 3}
+      propertyPath: _hudHanlder
+      value: 
+      objectReference: {fileID: 335156766}
+    - target: {fileID: 3314404097364031133, guid: aa4f4cab06a3f5b4881beca26f0242e9, type: 3}
+      propertyPath: _saveHandler
+      value: 
+      objectReference: {fileID: 1150197844}
     - target: {fileID: 6326076330547665695, guid: aa4f4cab06a3f5b4881beca26f0242e9, type: 3}
       propertyPath: m_Name
-      value: InitializeLevel
+      value: LevelHandler
       objectReference: {fileID: 0}
     - target: {fileID: 7552001422427784172, guid: aa4f4cab06a3f5b4881beca26f0242e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6725,8 +6733,8 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 7974682197686506270}
   - {fileID: 3140370712421016315}
+  - {fileID: 7974682197686506270}
   - {fileID: 1002417037}
   - {fileID: 335156762}
   - {fileID: 875926334}

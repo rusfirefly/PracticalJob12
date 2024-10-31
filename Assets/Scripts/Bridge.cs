@@ -30,7 +30,6 @@ public class Bridge : AnimationObject
 
     private void StartAnimation(float stateDoor)
     {
-       Debug.Log(stateDoor);
        transform.DOLocalMoveY(stateDoor, _duration).SetEase(_easeEffect);
     }
 

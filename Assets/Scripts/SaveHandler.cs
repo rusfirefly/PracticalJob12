@@ -3,6 +3,7 @@ using System.IO;
 
 public class SaveHandler : MonoBehaviour
 {
+    [SerializeField] private int _countBuildScenes;
     public SaveData SavedData { get; private set; }
     private DataGame LoadedDataGame;
     private string _pathData;
@@ -30,11 +31,12 @@ public class SaveHandler : MonoBehaviour
 
         if(LoadedDataGame == null)
         {
-            SavedData = new SaveData();
+            SavedData = new SaveData(_countBuildScenes);
             Save();
-        }else
+        }
+        else
         {
-            SavedData = new SaveData();
+            SavedData = new SaveData(_countBuildScenes);
             SavedData.DataGame = LoadedDataGame;
         }
     }
@@ -49,7 +51,6 @@ public class SaveHandler : MonoBehaviour
     public void Save()
     {
         string json = JsonUtility.ToJson(SavedData.DataGame);
-        Debug.Log(json);
         File.WriteAllText(_pathData, json);
     }
 }
