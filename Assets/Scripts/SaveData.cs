@@ -1,9 +1,9 @@
-public enum SceneID { MainMenu = 0, LoadScene = 1, LobbyScene=2, TutorialScene = 3, SceneNumber=4}
 
 [System.Serializable]
 public class DataGame
 {
     public int CurrentLevelID;
+    public int? LevelCompleteID;
     public int? PortalID;
     public int Score;
     public int CountCoinInLevel;
@@ -16,20 +16,18 @@ public class SaveData
 
     public int GetScore => DataGame.Score;
 
-    public int GetCountCoinInLevel=>DataGame.CountCoinInLevel;
+    public int GetCountCoinInLevel => DataGame.CountCoinInLevel;
 
     public int GetLevelID => DataGame.CurrentLevelID;
 
     public bool IsKey => DataGame.Key;
-    private int _countScenes;
 
-    public SaveData(int countLevels) 
+    public SaveData() 
     {
-        _countScenes = countLevels;
-        DefauldValue(countLevels);
+        DefauldValue();
     }
 
-    private void DefauldValue(int countLevels)
+    private void DefauldValue()
     {
         DataGame = new DataGame();
         DataGame.CurrentLevelID = (int)SceneID.TutorialScene;
@@ -50,9 +48,11 @@ public class SaveData
 
     public void ClearCoinInScene() => DataGame.Score = 0;
 
+    public void SetLevelCompleteID(int id) => DataGame.LevelCompleteID = id;
+
     public void RestartData()
     {
-        DefauldValue(_countScenes);
+        DefauldValue();
     }
 
 }

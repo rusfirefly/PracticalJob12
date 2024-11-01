@@ -12,6 +12,7 @@ public class LoadScene : MonoBehaviour
     private async void Start()
     {
         if (_isMainMenu) return;
+
         int? portalId = SaveHandler.Instance.SavedData.DataGame.PortalID;
 
         if (portalId == null)
@@ -23,7 +24,8 @@ public class LoadScene : MonoBehaviour
             _sceneID = (int)portalId;
         }
 
-        await Task.Delay(2500);
+        await Task.Yield();
+
         Load(_sceneID);
     }
 

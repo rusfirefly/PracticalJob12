@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class Bridge : AnimationObject
+public class Bridge : AnimationObject, IPaused
 {
     [SerializeField] private Ease _easeEffect;
     [SerializeField] private float _endPosition;
@@ -10,6 +10,8 @@ public class Bridge : AnimationObject
     private bool _isOpen;
     private float _doorClose;
     private float _doorOpen;
+    private Tween _tween;
+    public bool IsPaused { get; set; }
 
     private void Start()
     {
@@ -30,7 +32,18 @@ public class Bridge : AnimationObject
 
     private void StartAnimation(float stateDoor)
     {
-       transform.DOLocalMoveY(stateDoor, _duration).SetEase(_easeEffect);
+      _tween = transform.DOLocalMoveY(stateDoor, _duration).SetEase(_easeEffect);
     }
 
+    public void Pause()
+    {
+        IsPaused = true;
+        _tween.Pause();
+    }
+
+    public void Resume()
+    {
+        IsPaused = false;
+        _tween.Play();
+    }
 }

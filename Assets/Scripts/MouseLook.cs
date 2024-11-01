@@ -1,12 +1,14 @@
 using Cinemachine;
 using UnityEngine;
 
-public class MouseLook : MonoBehaviour
+public class MouseLook : MonoBehaviour, IPaused
 {
     private enum MouseButton { ClickLook = 1 }
     [SerializeField] private CinemachineFreeLook _freeLook;
     private float _speed;
     private float _defaulSpeed;
+
+    public bool IsPaused { get; set; }
 
     private void Awake()
     {
@@ -16,6 +18,8 @@ public class MouseLook : MonoBehaviour
 
     private void Update()
     {
+        if (IsPaused) return;
+
         if(Input.GetMouseButtonDown((int)MouseButton.ClickLook))
         {
             _speed = _defaulSpeed;
@@ -33,4 +37,13 @@ public class MouseLook : MonoBehaviour
 
     private void SetMaxSpeed(float speed) => _freeLook.m_XAxis.m_MaxSpeed = speed;
 
+    public void Pause()
+    {
+        IsPaused = true;
+    }
+
+    public void Resume()
+    {
+        IsPaused=false;
+    }
 }

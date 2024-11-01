@@ -1,4 +1,8 @@
 public interface IPaused
 {
-    void Pause();    
+    bool IsPaused { get; set; }
+
+    void Pause();
+
+    void Resume();
 }

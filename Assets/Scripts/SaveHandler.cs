@@ -3,10 +3,13 @@ using System.IO;
 
 public class SaveHandler : MonoBehaviour
 {
-    [SerializeField] private int _countBuildScenes;
+    [SerializeField] private bool _isSingleton;
     public SaveData SavedData { get; private set; }
+    public int IdSceneTutorial { get => 3; }
+
     private DataGame LoadedDataGame;
     private string _pathData;
+
     public static SaveHandler Instance;
 
     public void Singlton()
@@ -14,13 +17,18 @@ public class SaveHandler : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-        }else
+        }
+        else
         {
-            Destroy(Instance);
+            if (Instance != this)
+            {
+                Destroy(this);
+                return;
+            }
         }
 
-        DontDestroyOnLoad(gameObject);
         Initialized();
+        DontDestroyOnLoad(gameObject);
     }
 
     public void Initialized()
@@ -31,12 +39,12 @@ public class SaveHandler : MonoBehaviour
 
         if(LoadedDataGame == null)
         {
-            SavedData = new SaveData(_countBuildScenes);
+            SavedData = new SaveData();
             Save();
         }
         else
         {
-            SavedData = new SaveData(_countBuildScenes);
+            SavedData = new SaveData();
             SavedData.DataGame = LoadedDataGame;
         }
     }

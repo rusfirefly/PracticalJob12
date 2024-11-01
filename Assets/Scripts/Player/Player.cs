@@ -1,10 +1,9 @@
 using UnityEngine;
 
-
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SkillShowInvisibleObjects))]
 
-public class Player : MonoBehaviour, IMovable
+public class Player : MonoBehaviour, IMovable, IPaused
 {
     [SerializeField] private ForceMode _forceMode;
 
@@ -15,6 +14,8 @@ public class Player : MonoBehaviour, IMovable
     private PlayerInput _playerInput;
     private Animator _animator;
     private PlayerDeathEffect _playerDeathEffect;
+
+    public bool IsPaused { get; set; }
 
     public void Initialize(bool skillOpen = true)
     {
@@ -105,6 +106,23 @@ public class Player : MonoBehaviour, IMovable
     {
         if (_spawnPoint != spawnPoint)
             _spawnPoint = spawnPoint;
+    }
+
+    public void Pause()
+    {
+        IsPaused = true;
+        StopPlayer();
+    }
+
+    public void Resume()
+    {
+       IsPaused = false;
+    }
+
+    private void StopPlayer()
+    {
+        _rigidbody.linearVelocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
     }
 }
  

@@ -1,15 +1,22 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelHandler : MonoBehaviour
+public class LevelHandler : MonoBehaviour, IPaused
 {
     [SerializeField] private HudHandler _hudHanlder;
     [SerializeField] private SaveHandler _saveHandler;
 
     private SaveHandler Instance => SaveHandler.Instance;
-    private int _levelID => SceneManager.GetActiveScene().buildIndex - 3;
+
+    private int _levelID => SceneManager.GetActiveScene().buildIndex - Instance.IdSceneTutorial;
+
+    public bool IsPaused { get; set; }
+
     private int _countCoinInLevel;
     private int _pickUpCoinCount;
+
 
     private void Start()
     {
@@ -19,11 +26,42 @@ public class LevelHandler : MonoBehaviour
     private void OnEnable()
     {
         Coin.Collectible += OnCollectible;
+        PlayerInput.Paused += OnPaused;
+        Portal.Finish += OnFinish;
     }
 
     private void OnDisable()
     {
         Coin.Collectible -= OnCollectible;
+        PlayerInput.Paused -= OnPaused;
+        Portal.Finish -= OnFinish;
+    }
+
+    private void OnFinish()
+    {
+        List<IPaused> pausedObjects = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IPaused>().ToList();
+
+        foreach (IPaused obj in pausedObjects)
+        {
+           obj.Pause();
+        }
+
+        _hudHanlder.ShowFinishMenu();
+    }
+
+    private void OnPaused()
+    {
+        IsPaused = !IsPaused;
+
+        if (IsPaused)
+        {
+
+            _hudHanlder.ShowMainMenu();
+        }
+        else
+        {
+            _hudHanlder.HideMainMenu();
+        }
     }
 
     private void OnCollectible()
@@ -36,6 +74,7 @@ public class LevelHandler : MonoBehaviour
     private void Initialize()
     {
         _saveHandler.Singlton();
+
         Instance.SavedData.RestartData();
         _countCoinInLevel = GetCountCoin();
         Instance.SavedData.SetCountCoinInLevel(_countCoinInLevel);
@@ -55,4 +94,14 @@ public class LevelHandler : MonoBehaviour
     }
     
     private int GetCountCoin() => FindObjectsByType<Coin>(FindObjectsSortMode.None).Length;
+
+    public void Pause()
+    {
+       IsPaused=true;
+    }
+
+    public void Resume()
+    {
+        IsPaused = false;
+    }
 }

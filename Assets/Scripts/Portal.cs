@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -7,6 +8,7 @@ using UnityEditor;
 
 public class Portal : MonoBehaviour
 {
+    public static event Action Finish;
     public SceneID SceneID;
     public int SceneNumber;
 
@@ -16,11 +18,19 @@ public class Portal : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            if(SceneID == SceneID.FinishGame)
+            {
+                Finish?.Invoke();
+                return;
+            }
+
             int currentLevel = SceneManager.GetActiveScene().buildIndex - 3;
+
+            Instance.SavedData.SetLevelCompleteID(currentLevel);
             Instance.SavedData.SetCurrentLevelId(currentLevel);
             Instance.SavedData.SetPortallId(SceneNumber);
             Instance.Save();
-            
+
             SceneManager.LoadScene((int)SceneID.LoadScene);
         }
     }

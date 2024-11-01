@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointByPointMover : MonoBehaviour
+public class PointByPointMover : MonoBehaviour, IPaused
 {
     [SerializeField] AnimationCurve _movementCurve;
     [SerializeField] private float _speed;
@@ -11,10 +11,22 @@ public class PointByPointMover : MonoBehaviour
     private Queue<Vector3> _currentPath;
     private Vector3 _currentPoint;
 
+    public bool IsPaused { get; set; }
+
     public void Initialized(IEnumerable<Vector3> path)
     {
         _currentPath = new Queue<Vector3>(path);
         StartCoroutine(ProcessMove());
+    }
+
+    public void Pause()
+    {
+        IsPaused = true;
+    }
+
+    public void Resume()
+    {
+        IsPaused = false;
     }
 
     private IEnumerator ProcessMove()
@@ -24,6 +36,12 @@ public class PointByPointMover : MonoBehaviour
 
         while(_currentPath.Count > 0)
         {
+            if (IsPaused)
+            {
+                yield return null;
+            }
+
+
             SwitchPoint();
 
             startPoint = transform.position;

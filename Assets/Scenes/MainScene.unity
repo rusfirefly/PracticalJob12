@@ -1135,10 +1135,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Game
+  m_text: "\u041D\u043E\u0432\u0430\u044F \u0438\u0433\u0440\u0430"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 82032afc8e4456b44850a2c99b999ed4, type: 2}
-  m_sharedMaterial: {fileID: 2147374, guid: 82032afc8e4456b44850a2c99b999ed4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fa05e30d5a0f192439c7e17ce968bf9d, type: 2}
+  m_sharedMaterial: {fileID: 3646010192472018725, guid: fa05e30d5a0f192439c7e17ce968bf9d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4052,12 +4052,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Quit
-
-'
+  m_text: "\u0412\u044B\u0445\u043E\u0434"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 82032afc8e4456b44850a2c99b999ed4, type: 2}
-  m_sharedMaterial: {fileID: 2147374, guid: 82032afc8e4456b44850a2c99b999ed4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fa05e30d5a0f192439c7e17ce968bf9d, type: 2}
+  m_sharedMaterial: {fileID: 3646010192472018725, guid: fa05e30d5a0f192439c7e17ce968bf9d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6584,7 +6582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa75ae2a9011704dbe066d237980176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _countBuildScenes: 4
+  _isSingleton: 0
 --- !u!4 &1714760027
 Transform:
   m_ObjectHideFlags: 0
@@ -7720,7 +7718,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -27811,9 +27809,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1908352342}
+  - {fileID: 1464962620}
   - {fileID: 1714760027}
   - {fileID: 2102420935}
-  - {fileID: 1464962620}
   - {fileID: 1445241560}
   - {fileID: 835133869}
   - {fileID: 238670850}

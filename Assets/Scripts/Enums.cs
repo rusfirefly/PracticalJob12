@@ -1,0 +1,1 @@
+public enum SceneID { MainMenu = 0, LoadScene = 1, LobbyScene = 2, TutorialScene = 3, SceneNumber = 4, FinishGame }

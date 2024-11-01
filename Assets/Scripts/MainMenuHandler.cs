@@ -11,7 +11,7 @@ public class MainMenuHandler : MonoBehaviour
     {
         _loadHandler = FindFirstObjectByType<LoadScene>();
         
-        if(SaveHandler.Instance.SavedData.GetLevelID != (int)SceneID.TutorialScene)
+        if(SaveHandler.Instance.SavedData.DataGame.LevelCompleteID != null)
         {
             _continueButton.gameObject.SetActive(true);
         }
