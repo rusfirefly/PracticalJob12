@@ -17,10 +17,10 @@ public class LevelHandler : MonoBehaviour, IPaused
     private int _countCoinInLevel;
     private int _pickUpCoinCount;
 
-
     private void Start()
     {
         Initialize();
+        LookCursor();
     }
 
     private void OnEnable()
@@ -37,8 +37,20 @@ public class LevelHandler : MonoBehaviour, IPaused
         Portal.Finish -= OnFinish;
     }
 
+    public void Pause()
+    {
+        IsPaused = true;
+    }
+
+    public void Resume()
+    {
+        IsPaused = false;
+    }
+
     private void OnFinish()
     {
+        Cursor.lockState  = CursorLockMode.Confined;
+
         List<IPaused> pausedObjects = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IPaused>().ToList();
 
         foreach (IPaused obj in pausedObjects)
@@ -55,12 +67,13 @@ public class LevelHandler : MonoBehaviour, IPaused
 
         if (IsPaused)
         {
-
             _hudHanlder.ShowMainMenu();
+            ConfinedCursor();
         }
         else
         {
             _hudHanlder.HideMainMenu();
+            LookCursor();
         }
     }
 
@@ -79,7 +92,6 @@ public class LevelHandler : MonoBehaviour, IPaused
         Instance.SavedData.SetCountCoinInLevel(_countCoinInLevel);
         SetLevelId();
         SetNewlevelData();
-        //Instance.Save();
     }
 
     private void SetLevelId()
@@ -94,13 +106,7 @@ public class LevelHandler : MonoBehaviour, IPaused
     
     private int GetCountCoin() => FindObjectsByType<Coin>(FindObjectsSortMode.None).Length;
 
-    public void Pause()
-    {
-       IsPaused=true;
-    }
+    private void LookCursor()=>Cursor.lockState = CursorLockMode.Locked;
 
-    public void Resume()
-    {
-        IsPaused = false;
-    }
+    private void ConfinedCursor() => Cursor.lockState = CursorLockMode.Confined;
 }

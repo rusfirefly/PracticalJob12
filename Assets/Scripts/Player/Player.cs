@@ -17,6 +17,11 @@ public class Player : MonoBehaviour, IMovable, IPaused
 
     public bool IsPaused { get; set; }
 
+    public void Awake()
+    {
+        _rigidbody= GetComponent<Rigidbody>();
+    }
+
     public void Initialize(bool skillOpen = true)
     {
         _skillShowInvisibleObjects = GetComponent<SkillShowInvisibleObjects>();

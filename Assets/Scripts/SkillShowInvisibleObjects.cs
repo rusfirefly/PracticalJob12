@@ -24,6 +24,7 @@ public class SkillShowInvisibleObjects : MonoBehaviour
     private void OpenSkill(object isOpen)
     {
         _skillView.ShowSkill(_isOpen);
+
         if (_isOpen)
         {
             _skillView.SetTimeAction(_timeOfAction);

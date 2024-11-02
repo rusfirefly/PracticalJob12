@@ -18,7 +18,10 @@ public class MouseLook : MonoBehaviour, IPaused
 
     private void Update()
     {
-        if (IsPaused) return;
+        if (IsPaused)
+        {
+            return;
+        }
 
         if(Input.GetMouseButtonDown((int)MouseButton.ClickLook))
         {

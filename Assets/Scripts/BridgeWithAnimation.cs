@@ -8,6 +8,11 @@ public class BridgeWithAnimation : AnimationObject
 
     private bool _isPlaying;
 
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
     private void OnValidate()
     {
         _animator ??= GetComponent<Animator>();

@@ -30,7 +30,7 @@ public class HudHandler : MonoBehaviour
 
     public void SetCoinText(int coin)
     {
-        _coinText.text = $"Coin: {coin}/{Instance.SavedData.DataGame.CountCoinInLevel}";
+        _coinText.text = $"гексаэдр: {coin}/{Instance.SavedData.DataGame.CountCoinInLevel}";
     }
 
     public void ShowMainMenu()
