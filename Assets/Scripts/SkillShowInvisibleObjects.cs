@@ -109,7 +109,7 @@ public class SkillShowInvisibleObjects : MonoBehaviour
 
     private void SetVisibleAllHideObjects()
     {
-        InvisibleMaterial[] invisibleMaterials = FindObjectsOfType<InvisibleMaterial>();
+        InvisibleMaterial[] invisibleMaterials = FindObjectsByType<InvisibleMaterial>(FindObjectsSortMode.None);
         foreach (InvisibleMaterial invisible in invisibleMaterials)
         {
             invisible.SetVisible();

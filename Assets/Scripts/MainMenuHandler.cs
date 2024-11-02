@@ -6,12 +6,13 @@ public class MainMenuHandler : MonoBehaviour
 {
     [SerializeField] private Button _continueButton;
     private LoadScene _loadHandler;
+    private const int None = -1;
 
     public void Initialize()
     {
         _loadHandler = FindFirstObjectByType<LoadScene>();
-        
-        if(SaveHandler.Instance.SavedData.DataGame.LevelCompleteID != null)
+
+        if(SaveHandler.Instance.SavedData.DataGame.LevelCompleteID > None)
         {
             _continueButton.gameObject.SetActive(true);
         }

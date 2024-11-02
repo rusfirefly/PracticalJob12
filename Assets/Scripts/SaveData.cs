@@ -3,8 +3,8 @@
 public class DataGame
 {
     public int CurrentLevelID;
-    public int? LevelCompleteID;
-    public int? PortalID;
+    public int LevelCompleteID;
+    public int PortalID;
     public int Score;
     public int CountCoinInLevel;
     public bool Key;
@@ -33,7 +33,8 @@ public class SaveData
         DataGame.CurrentLevelID = (int)SceneID.TutorialScene;
         DataGame.Score = 0;
         DataGame.Key = false;
-        DataGame.PortalID = null;
+        DataGame.PortalID = -1;
+        DataGame.LevelCompleteID = -1;
     }
 
     public void SetCountCoinInLevel(int count)=> DataGame.CountCoinInLevel = count;

@@ -26,11 +26,11 @@ public class Portal : MonoBehaviour
 
             int currentLevel = SceneManager.GetActiveScene().buildIndex - 3;
 
+            
             Instance.SavedData.SetLevelCompleteID(currentLevel);
             Instance.SavedData.SetCurrentLevelId(currentLevel);
             Instance.SavedData.SetPortallId(SceneNumber);
             Instance.Save();
-
             SceneManager.LoadScene((int)SceneID.LoadScene);
         }
     }

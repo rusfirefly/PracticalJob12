@@ -75,12 +75,11 @@ public class LevelHandler : MonoBehaviour, IPaused
     {
         _saveHandler.Singlton();
 
-        Instance.SavedData.RestartData();
         _countCoinInLevel = GetCountCoin();
         Instance.SavedData.SetCountCoinInLevel(_countCoinInLevel);
         SetLevelId();
         SetNewlevelData();
-        Instance.Save();
+        //Instance.Save();
     }
 
     private void SetLevelId()

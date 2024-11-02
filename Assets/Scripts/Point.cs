@@ -7,10 +7,9 @@ public class Point : MonoBehaviour
     public static event Action PointComplete;
     
     [SerializeField] private bool _isEnable;
-    [SerializeField] private float _timerDisablePartical = 3f;
+    [SerializeField] private float _timerDisablePartical = 1.5f;
     private ParticleSystem[] _particals;
     private BoxCollider _boxColliderTriger;
-    private float _timeOnEnableLight = 0.1f;
     private float _newAlpha = 15;
     private int _maxPartical=2;
 

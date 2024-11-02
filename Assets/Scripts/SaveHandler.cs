@@ -22,6 +22,7 @@ public class SaveHandler : MonoBehaviour
         {
             if (Instance != this)
             {
+                Debug.Log("del");
                 Destroy(this);
                 return;
             }
@@ -59,6 +60,7 @@ public class SaveHandler : MonoBehaviour
     public void Save()
     {
         string json = JsonUtility.ToJson(SavedData.DataGame);
+        Debug.Log(json);
         File.WriteAllText(_pathData, json);
     }
 }
